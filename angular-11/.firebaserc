@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "byb2go": {
+      "hosting": {
+        "material": [
+          "byb2go"
+        ]
+      }
+    }
+  }
+}
