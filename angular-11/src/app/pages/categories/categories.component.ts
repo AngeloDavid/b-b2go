@@ -16,7 +16,7 @@ import {category} from '../../interfaces/interfaces';
 
 
 export class CategoriesComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'note', 'order','status','img'];
+  displayedColumns: string[] = ['id', 'name', 'note', 'order','status','act'];
 
   categoria:category={
     id:'',
@@ -30,8 +30,8 @@ export class CategoriesComponent implements OnInit {
   }
   
   items : Observable<any[]>;
-  constructor(firestore: AngularFirestore) {
-    this.items = firestore.collection('categories').valueChanges();
+  constructor( private firestore: AngularFirestore) {
+    this.items = this.firestore.collection('categories', ref => ref.where('isFather','==',true)).valueChanges();
    }
 
   ngOnInit(): void {
@@ -40,6 +40,18 @@ export class CategoriesComponent implements OnInit {
   guardar(){
     console.log("holaa");
     console.log(this.categoria);
+    this.firestore.collection('categories').add({
+      name:this.categoria.name,
+      note:this.categoria.note,
+      order:this.categoria.order,
+      img:this.categoria.img,
+      status:true,
+      isFather:true,
+      date_created: new Date()
+    });
   }
 
+  getCategory(idCate: string){
+    console.log(idCate);
+  }
 }
