@@ -1,10 +1,11 @@
 export interface category {
-    id: string;
+    id?: string;
     name: string;
     note:string;
     order: number;
-    img: string;
+    img?: string;
     status: boolean;
     isFather: boolean;
-    id_Cat_p:string;
+    id_Cat_p?:string;
+    date_created?:Date;
   }
