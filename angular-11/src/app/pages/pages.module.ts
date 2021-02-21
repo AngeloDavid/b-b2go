@@ -14,6 +14,7 @@ import { PagesRoutes } from './pages.routing';
 import { CategoriesComponent } from './categories/categories.component';
 import { ServicesComponent } from './services/services.component';
 import { WorkersComponent } from './workers/workers.component';
+import { ModalNewComponent } from './services/modal-new/modal-new.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { WorkersComponent } from './workers/workers.component';
   declarations: [
     CategoriesComponent,
     ServicesComponent,
-    WorkersComponent
+    WorkersComponent,
+    ModalNewComponent
   ]
 })
 export class PagesModule { }

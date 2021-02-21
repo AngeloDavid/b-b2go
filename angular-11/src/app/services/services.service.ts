@@ -5,17 +5,12 @@ import {category } from '../interfaces/interfaces';
 @Injectable({
   providedIn: 'root'
 })
-export class CategoriesService {
+export class ServicesService {
 
   constructor(private firebase: AngularFirestore) { }
 
-  // Reportes
   getAllCategories(){
-    return this.firebase.collection('categories', ref => ref.where('isFather','==',true)).snapshotChanges();
-  }
-
-  getCategoriesEnable(){
-    return this.firebase.collection('categories', ref => ref.where('isFather','==',true).where('status','==',true)).snapshotChanges();
+    return this.firebase.collection('categories', ref => ref.where('isFather','==',false).orderBy('date_created')).snapshotChanges();
   }
 
   getCategory(id:any){
@@ -31,7 +26,6 @@ export class CategoriesService {
   }
 
   // unsubscribeCategory(id:any, statusd:boolean){
-  //   return this.firebase.collection('categories').doc(id).set({status: statusd});
+  //   return this.firebase.collection('categories').doc(id).set({status: statusd}, {merge: true});
   // } 
-
 }

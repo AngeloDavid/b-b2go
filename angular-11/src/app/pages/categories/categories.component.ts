@@ -1,7 +1,6 @@
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 // angular modulo
-import { AngularFirestore } from '@angular/fire/firestore';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { Observable } from 'rxjs';
@@ -28,16 +27,22 @@ export class CategoriesComponent implements OnInit {
     img:'',
     status:true,
     isFather:true,
-    id_Cat_p:''
+    id_catFather:''
   }
   
   isnew:boolean = true;
   
   items: any ;
+
+  // @ViewChild(MatSort)
+  // set appSort(sort: MatSort){
+  //   this.items.
+  // }
+   ;
+
   constructor( 
     public snackBar: MatSnackBar,
-    private categoriesService: CategoriesService,
-    private firestore: AngularFirestore) {
+    private categoriesService: CategoriesService) {
       this.categoriesService.getAllCategories().subscribe(
         resp =>{
           this.items = resp.map((e:any)=>{
@@ -90,11 +95,7 @@ export class CategoriesComponent implements OnInit {
     
 
   }
-  enableCategory(){
-    this.categoriesService.unsubscribeCategory(this.categoria.id,!this.categoria.status).then ( resp=>{
-      this.nullCategoryPr();
-    },err =>{ console.error(err)})
-  }
+
 
   getCategory(idCate: any){
     this.categoriesService.getCategory(idCate).subscribe (
@@ -129,7 +130,7 @@ export class CategoriesComponent implements OnInit {
       img:'',
       status:true,
       isFather:true,
-      id_Cat_p:''
+      id_catFather:''
     }
   }
 

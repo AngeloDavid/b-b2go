@@ -2,6 +2,14 @@ import { NullTemplateVisitor } from '@angular/compiler';
 import { Component, OnInit,ViewChild, AfterViewInit} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+
+import {category} from '../../interfaces/interfaces';
+
+import { ServicesService} from '../../services/services.service';
+
+import {ModalNewComponent} from '../services/modal-new/modal-new.component';
+
 @Component({
   selector: 'app-services',
   templateUrl: './services.component.html',
@@ -9,44 +17,73 @@ import {MatTableDataSource} from '@angular/material/table';
 })
 export class ServicesComponent implements AfterViewInit {
   
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  constructor() { }
+  items:any= [];
+
+  displayedColumns: string[] = ['id', 'name', 'note', 'order','category','status','act'];
+  // displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  dataSource = new MatTableDataSource<category>(this.items);
+  @ViewChild(MatPaginator)set appprueba(paginator: MatPaginator) {
+    this.dataSource.paginator = paginator;
+  } ;
+  constructor(
+    private ServiceServi : ServicesService,
+    public dialog: MatDialog
+  ) {
+      this.ServiceServi.getAllCategories().subscribe(
+        resp=>{
+          this.items = resp.map((e: any)=>{
+            console.log(e.payload.doc.data().id_catFather);
+            return {
+              id: e.payload.doc.id,
+              name: e.payload.doc.data().name,
+              note:e.payload.doc.data().note,
+              order:e.payload.doc.data().order,
+              img:e.payload.doc.data().img,
+              status:e.payload.doc.data().status,
+              isFather:e.payload.doc.data().isFather,
+              id_catFather:e.payload.doc.data().id_catFather
+            }
+          });
+          this.dataSource.data = this.items;
+        },
+        err => {
+          console.error(err);
+        }
+      );
+     
+   }
 
   ngAfterViewInit(){
   // ngOnInit(): void {
-    this.dataSource.paginator = this.paginator;
+    console.log("hola after");
+    // this.dataSource.data = this.items;
+  }
+  
+  getService(id:any){
+    console.log(id);
+  }
+
+  createCategory() {
+    const dialogRef = this.dialog.open(ModalNewComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  modifyCategory(item: category){
+    const diaconfig = new MatDialogConfig();
+    diaconfig.data = {
+        isnew:false,
+        data: item
+      };
+    const dialogRef = this.dialog.open(ModalNewComponent,diaconfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+
   }
 
 }
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-  {position: 11, name: 'Sodium', weight: 22.9897, symbol: 'Na'},
-  {position: 12, name: 'Magnesium', weight: 24.305, symbol: 'Mg'},
-  {position: 13, name: 'Aluminum', weight: 26.9815, symbol: 'Al'},
-  {position: 14, name: 'Silicon', weight: 28.0855, symbol: 'Si'},
-  {position: 15, name: 'Phosphorus', weight: 30.9738, symbol: 'P'},
-  {position: 16, name: 'Sulfur', weight: 32.065, symbol: 'S'},
-  {position: 17, name: 'Chlorine', weight: 35.453, symbol: 'Cl'},
-  {position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar'},
-  {position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K'},
-  {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca'},
-];
