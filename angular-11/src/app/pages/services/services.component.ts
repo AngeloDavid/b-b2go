@@ -9,6 +9,7 @@ import {category} from '../../interfaces/interfaces';
 import { ServicesService} from '../../services/services.service';
 
 import {ModalNewComponent} from '../services/modal-new/modal-new.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-services',
@@ -18,6 +19,18 @@ import {ModalNewComponent} from '../services/modal-new/modal-new.component';
 export class ServicesComponent implements AfterViewInit {
   
   items:any= [];
+  categoria:category={
+    id:'',
+    name:'',
+    note:'',
+    order:0,
+    img:'',
+    status:true,
+    isFather:true,
+    id_catFather:''
+  }
+  
+  // cat : Observable <category> = null;
 
   displayedColumns: string[] = ['id', 'name', 'note', 'order','category','status','act'];
   // displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
@@ -29,22 +42,38 @@ export class ServicesComponent implements AfterViewInit {
     private ServiceServi : ServicesService,
     public dialog: MatDialog
   ) {
+    // this.ServiceServi.getTest();
       this.ServiceServi.getAllCategories().subscribe(
         resp=>{
           this.items = resp.map((e: any)=>{
-            console.log(e.payload.doc.data().id_catFather);
-            return {
+            let data = e.payload.doc.data() as category; 
+            let itemCat = {
               id: e.payload.doc.id,
-              name: e.payload.doc.data().name,
-              note:e.payload.doc.data().note,
-              order:e.payload.doc.data().order,
-              img:e.payload.doc.data().img,
-              status:e.payload.doc.data().status,
-              isFather:e.payload.doc.data().isFather,
-              id_catFather:e.payload.doc.data().id_catFather
+              name: data.name,
+              note:data.note,
+              order:data.order,
+              img:data.img,
+              status:data.status,
+              isFather:data.isFather,
+              id_catFather:"",
+              catName:""
             }
+
+            if(data.id_catFather){
+              data.id_catFather.get().then((resp : any)=>{
+                itemCat.id_catFather=resp.id;
+                itemCat.catName=resp.data().name;
+              }).catch(
+                (err: any)=>{
+                  console.error(err);
+                }
+              );
+            }
+
+            return itemCat;
           });
           this.dataSource.data = this.items;
+          // console.log(this.items);
         },
         err => {
           console.error(err);
@@ -55,7 +84,7 @@ export class ServicesComponent implements AfterViewInit {
 
   ngAfterViewInit(){
   // ngOnInit(): void {
-    console.log("hola after");
+    // console.log("hola after");
     // this.dataSource.data = this.items;
   }
   

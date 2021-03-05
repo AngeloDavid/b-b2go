@@ -27,5 +27,35 @@ export class ServicesService {
 
   // unsubscribeCategory(id:any, statusd:boolean){
   //   return this.firebase.collection('categories').doc(id).set({status: statusd}, {merge: true});
-  // } 
+  // }
+  getTest(){
+    console.log ("service");
+    let query = this.firebase.collection('categories').get();
+    let listService: any = [];
+    query.subscribe(res => {
+      res.forEach(doc => {
+        let newService :any = doc.data();
+        newService.id=doc.id;
+        // newService.name= doc.data().name;
+
+        if(  newService.id_catFather){
+          newService.id_catFather.get().then((resp : any) =>{
+            newService.Categoryname = resp.data().name;
+            newService.Categoryid = resp.id;
+            listService.push(newService); 
+          }).catch(
+            (err: any)=>{
+              console.error(err);
+            }
+          );
+        }else{
+          listService.push(newService); 
+        }
+        
+      });
+    });
+
+    console.log(" test");
+    console.log(listService);
+  } 
 }

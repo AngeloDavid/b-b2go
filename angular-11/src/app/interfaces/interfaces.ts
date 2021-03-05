@@ -6,6 +6,7 @@ export interface category {
     img?: string;
     status: boolean;
     isFather: boolean;
-    id_catFather?:string;
+    id_catFather?:any;
     date_created?:Date;
+    catName?:string;
   }

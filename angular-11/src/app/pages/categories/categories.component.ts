@@ -98,6 +98,7 @@ export class CategoriesComponent implements OnInit {
 
 
   getCategory(idCate: any){
+    console.log(idCate);
     this.categoriesService.getCategory(idCate).subscribe (
       resp=>{
         var dato: any=resp.data();

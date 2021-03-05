@@ -1,7 +1,7 @@
 <mat-card>
     <mat-card-content>
         <mat-card-title>Servicios</mat-card-title>
-        <mat-card-subtitle> Lista de servicios que aparecen en la APP</mat-card-subtitle>        
+        <mat-card-subtitle> Lista de servicios que aparecen en la APP  </mat-card-subtitle>        
         <div align="end">
           <button  mat-raised-button color="warn" (click)= "createCategory()" > <mat-icon>add</mat-icon>Ingresar</button>
         </div>
@@ -38,7 +38,7 @@
               <!-- Symbol Column -->
               <ng-container matColumnDef="category">
                 <th mat-header-cell *matHeaderCellDef> Categoria </th>
-                <td mat-cell *matCellDef="let element">  </td>
+                <td mat-cell *matCellDef="let element" > {{element.catName}}  </td>
               </ng-container>
 
               <!-- Symbol Column -->
