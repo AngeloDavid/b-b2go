@@ -7,7 +7,7 @@ import {category } from '../interfaces/interfaces';
 })
 export class ServicesService {
 
-  constructor(private firebase: AngularFirestore) { }
+  constructor(public firebase: AngularFirestore) { }
 
   getAllCategories(){
     return this.firebase.collection('categories', ref => ref.where('isFather','==',false).orderBy('date_created')).snapshotChanges();
@@ -21,7 +21,7 @@ export class ServicesService {
   }
 
   updateCategory(id:any,categoria:category){
-    console.log(id,categoria);
+    // console.log(id,categoria);
     return this.firebase.collection('categories').doc(id).update(categoria);
   }
 

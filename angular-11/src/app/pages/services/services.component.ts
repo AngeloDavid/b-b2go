@@ -46,7 +46,9 @@ export class ServicesComponent implements AfterViewInit {
       this.ServiceServi.getAllCategories().subscribe(
         resp=>{
           this.items = resp.map((e: any)=>{
+            
             let data = e.payload.doc.data() as category; 
+            // console.log(data);
             let itemCat = {
               id: e.payload.doc.id,
               name: data.name,
@@ -96,6 +98,7 @@ export class ServicesComponent implements AfterViewInit {
     const dialogRef = this.dialog.open(ModalNewComponent);
 
     dialogRef.afterClosed().subscribe(result => {
+      this.dataSource.data = this.items;
       console.log(`Dialog result: ${result}`);
     });
   }
@@ -104,7 +107,8 @@ export class ServicesComponent implements AfterViewInit {
     const diaconfig = new MatDialogConfig();
     diaconfig.data = {
         isnew:false,
-        data: item
+        id: item.id,
+        id_catFather:item.id_catFather
       };
     const dialogRef = this.dialog.open(ModalNewComponent,diaconfig);
 
