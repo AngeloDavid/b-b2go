@@ -31,3 +31,22 @@ export interface worker {
     catName?: string;
     id_category?:any;
 }
+
+export interface service{
+    id?:string;
+    note?:string;
+    order:number;
+    price:number;
+    isIva:boolean;
+    ivaIncluded:boolean;
+    time:Date;
+    status:boolean;
+    date_created?:Date;
+    date_modified?:Date;
+    id_cat?:any;
+    id_worker?:any;
+    catName?:string;
+    serName?:string;
+    iva?:number;
+    total?:number;
+}

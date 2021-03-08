@@ -1,19 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild, AfterViewInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WorkerService } from 'src/app/services/worker.service';
-import {category,worker } from '../../../interfaces/interfaces';
+import {category,service,worker } from '../../../interfaces/interfaces';
 import { CategoriesService } from '../../../services/categories.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-new',
   templateUrl: './new.component.html',
   styleUrls: ['./new.component.css']
 })
-export class NewComponent implements OnInit {
+export class NewComponent  implements AfterViewInit{
 
   activityData: any=[];
   Categories: category [] = [];
+  Services:service []=[];
   worker: worker ={
     id:'',
     ced:'',
@@ -32,6 +36,12 @@ export class NewComponent implements OnInit {
   isNew:boolean=true;
   isEditable:boolean=false;
 
+  displayedColumns: string[] = ['id', 'category','service','note', 'price', 'iva','total','time','status','act'];
+  dataSource = new MatTableDataSource<service>(this.Services);
+
+  @ViewChild(MatPaginator)set appprueba(paginator: MatPaginator) {
+    this.dataSource.paginator = paginator;
+  } ;
   constructor(
       private CateService: CategoriesService,
       private WorkerService: WorkerService,
@@ -58,7 +68,7 @@ export class NewComponent implements OnInit {
     );
    }
 
-  ngOnInit(): void {
+   ngAfterViewInit(): void {
     const routerParams= this.route.snapshot.paramMap;
     const idWorker = String(routerParams.get('idWorker'));
     if(idWorker != "null"){
