@@ -12,6 +12,7 @@ const MENUITEMS = [
   { state: 'categorias', type: 'link', name: 'Categorias', icon: 'view_comfy' },
   { state: 'servicios', type: 'link', name: 'Servicios', icon: 'work' },
   { state: 'profesionales', type: 'link', name: 'Profesionales', icon: 'store' },
+  { state: 'profesionales-new', type: 'link', name: 'Nuevo Profesionales', icon: 'store' },
   // { state: 'menu', type: 'link', name: 'Menu', icon: 'view_headline' },
   // { state: 'tabs', type: 'link', name: 'Tabs', icon: 'tab' },
   // { state: 'stepper', type: 'link', name: 'Stepper', icon: 'web' },
