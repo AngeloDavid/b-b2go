@@ -11,3 +11,23 @@ export interface category {
     date_modified?:Date;
     catName?:string;
   }
+
+export interface worker {
+    id?: string;
+    ced: string;
+    name: string;
+    lastname:string;
+    businessName:string;
+    email:string;
+    phone1:string;
+    phone2?:string;
+    address:string;
+    skill?:string;
+    experience?:string;
+    status:number;
+    date_created?:Date;
+    date_modified?:Date;
+    // categoria
+    catName?: string;
+    id_category?:any;
+}

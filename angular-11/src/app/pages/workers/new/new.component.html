@@ -7,8 +7,8 @@
                 <div class="pro-img">
                     <img src="assets/images/users/4.jpg" width="100" alt="user" class="img-circle">
                 </div>
-                <h3 class="m-b-0">Angela Dominic</h3>
-                <h6 class="m-t-0 ">Web Designer &amp; Developer</h6>
+                <h3 class="m-b-0">{{ worker.name }} {{ worker.lastname }} </h3>
+                <h6 class="m-t-0 "> {{ worker.businessName }} &amp; {{ worker.catName}}</h6>
                 <mat-card-actions>
                     <button mat-raised-button color="warn">Subir Foto</button>
                 </mat-card-actions>
@@ -39,85 +39,106 @@
             <form class="basic-form"> 
             <mat-tab-group>
                 <mat-tab label="Perfil">
+                    <ng-template mat-tab-label>
+						<mat-icon>person</mat-icon>
+					</ng-template>
                     <mat-card-content>
                         <mat-card-title>Datos Personales</mat-card-title>
                             <div fxLayout="row wrap">
                                 <!-- column -->
                                 <div fxFlex.gt-sm="30" fxFlex="30">
                                     <mat-form-field>
-                                        <input matInput  placeholder="Cedula">
+                                        <input matInput id="ced" name="ced" #ced="ngModel" required maxlength="13" minlength="10" disabled="{{isEditable}}" [(ngModel)]="worker.ced" placeholder="Cedula">
                                     </mat-form-field>
                                 </div>
                                 <div fxFlex.gt-sm="70" fxFlex="70">
                                     <mat-form-field>
-                                        <input matInput  placeholder="Razon Social">
+                                        <input matInput id="businessName" name="businessName" #businessName="ngModel" required disabled="{{isEditable}}" [(ngModel)]="worker.businessName"   placeholder="Razon Social">
                                     </mat-form-field>
                                 </div>
                                 <div fxFlex.gt-sm="50" fxFlex="50">
                                     <mat-form-field>
-                                        <input matInput placeholder="Nombre">
+                                        <input matInput   id="name" name="name" #name="ngModel" required disabled="{{isEditable}}" [(ngModel)]="worker.name"  placeholder="Nombre">
                                     </mat-form-field>
                                 </div>
                                 <div fxFlex.gt-sm="50" fxFlex="50">
                                     <mat-form-field>
-                                        <input matInput placeholder="Apellido">
+                                        <input matInput  id="lastname" name="lastname" #lastname="ngModel" required disabled="{{isEditable}}" [(ngModel)]="worker.lastname"  placeholder="Apellido">
                                     </mat-form-field>
                                 </div>
                                 <!-- column -->
                                 <div fxFlex.gt-sm="100" fxFlex="100">
                                     <mat-form-field>
-                                        <input matInput placeholder="Email" type="email">
+                                        <input matInput  id="email" name="email" #email="ngModel" required disabled="{{isEditable}}" [(ngModel)]="worker.email"  placeholder="Email" type="email">
                                     </mat-form-field>
                                 </div>
 
                                 <div fxFlex.gt-sm="50" fxFlex="50">
                                     <mat-form-field>
-                                        <input matInput placeholder="Telefono" type="text">
+                                        <input matInput  id="phone1" name="phone1" #phone1="ngModel" required disabled="{{isEditable}}" [(ngModel)]="worker.phone1"  placeholder="Telefono" type="text">
                                     </mat-form-field>
                                 </div>
                                 <div fxFlex.gt-sm="50" fxFlex="50">
                                     <mat-form-field>
-                                        <input matInput placeholder="Celular" type="text">
+                                        <input matInput  id="phone2" name="phone2" #phone2="ngModel"  disabled="{{isEditable}}" [(ngModel)]="worker.phone2"  placeholder="Celular" type="text">
                                     </mat-form-field>
                                 </div>
-                                <div fxFlex.gt-sm="100" fxFlex="100">
+                                <div fxFlex.gt-sm="80" fxFlex="80">
                                     <mat-form-field>
-                                        <textarea matInput placeholder="Direccion"></textarea>
+                                        <textarea   matInput  id="address" name="address" #address="ngModel" required disabled="{{isEditable}}" [(ngModel)]="worker.address"  placeholder="Direccion"></textarea>
+                                    </mat-form-field>
+                                </div>
+                                <div fxFlex.gt-sm="20" fxFlex="20">
+                                    <mat-form-field>
+                                        <mat-select style="height: 36px;"  placeholder="Estado" [(ngModel)]="worker.status" id="status" name="status" >
+                                            <mat-option  value="1">Aspirante</mat-option>
+                                            <mat-option  value="2">Habilitado</mat-option>
+                                            <mat-option  value="0">Deshabilitado</mat-option>
+                                        </mat-select>
                                     </mat-form-field>
                                 </div>
                                 <br>                               
-                            </div>                      
-                    </mat-card-content>
-                </mat-tab>
-                <mat-tab label="Habilidades">
-                    <mat-card-content>
-                        <br><mat-card-title>Datos Laborales</mat-card-title>
-                        <div fxLayout="row wrap">
-                                <!-- column -->
-                                <div fxFlex.gt-sm="50" fxFlex="50">
-                                    <mat-form-field>
-                                        <mat-select placeholder="Categoria">
-                                            <mat-option value="option">Option</mat-option>
-                                            <mat-option value="option">Option2</mat-option>
-                                            <mat-option value="option">Option3</mat-option>
-                                        </mat-select>
-                                    </mat-form-field>
-                                    <mat-form-field>
-                                        <textarea matInput placeholder="Habilidades" style="height: 100px;" ></textarea>
-                                    </mat-form-field>
-                                </div>
-                                <!-- column -->
-                                <div fxFlex.gt-sm="50" fxFlex="50">                                     <mat-form-field>
-                                        <textarea matInput placeholder="Experencia" style="height: 165px; " ></textarea>
-                                    </mat-form-field>
-                                    
-                                </div>
-                                <!-- column -->
-                                
-                            </div>
+                            </div>  
+                            <mat-accordion class="example-headers-align">
+                                <mat-expansion-panel>
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title> Datos Laborales </mat-panel-title>                                        
+                                    </mat-expansion-panel-header>
+                                    <div fxLayout="row wrap">
+                                        <!-- column -->
+                                        <div fxFlex.gt-sm="50" fxFlex="50">
+                                            <mat-form-field>
+                                                <mat-select required placeholder="Categoria" [(ngModel)]="worker.id_category" id="id_category" name="id_category" >
+                                                    <mat-option *ngFor="let item of Categories;" value="{{item.id}}">{{item.name}}</mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                            <mat-form-field>
+                                                <textarea matInput id="skill" name="skill" #skill="ngModel"  disabled="{{isEditable}}" [(ngModel)]="worker.skill"  placeholder="Habilidades" style="height: 100px;" ></textarea>
+                                            </mat-form-field>
+                                        </div>
+                                        <!-- column -->
+                                        <div fxFlex.gt-sm="50" fxFlex="50">                                     <mat-form-field>
+                                                <textarea matInput id="experience" name="experience" #experience="ngModel"  disabled="{{isEditable}}" [(ngModel)]="worker.experience"  placeholder="Experencia" style="height: 157px; " ></textarea>
+                                            </mat-form-field>                                            
+                                        </div>
+                                    </div>
+                                </mat-expansion-panel>
+                            </mat-accordion> 
+                            <br><br>
+                       
+                            <button right-align mat-raised-button color="primary" (click)="guardar()">
+                                <span *ngIf="isNew ; else elseBlock">Guardar</span>
+                                <ng-template #elseBlock>
+                                    Actualizar
+                                </ng-template>
+                            </button>
+                                       
                     </mat-card-content>
                 </mat-tab>
                 <mat-tab label="Horarios">
+                    <ng-template mat-tab-label>
+						<mat-icon>alarm</mat-icon>
+					</ng-template>
                     <mat-card-content>
                         <mat-card-title>Datos Personales</mat-card-title>
                         <!-- ============================================================== -->
@@ -127,6 +148,9 @@
                     </mat-card-content>
                 </mat-tab>
                 <mat-tab label="Costos">
+                    <ng-template mat-tab-label>
+						<mat-icon>monetization_on</mat-icon>
+					</ng-template>
                     <mat-card-content>
                     </mat-card-content>
                 </mat-tab>
@@ -134,5 +158,14 @@
            
             </form>
         </mat-card>       
+    </div>
+</div>
+<div fxLayout="row wrap">
+    <div fxFlex.gt-sm="100" fxFlex="100">
+        <mat-card>
+            <mat-card-content>
+                <mat-card-title>Servicios</mat-card-title>
+            </mat-card-content>
+        </mat-card>
     </div>
 </div>

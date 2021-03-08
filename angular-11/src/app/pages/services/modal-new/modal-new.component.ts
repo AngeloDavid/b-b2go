@@ -110,6 +110,7 @@ export class ModalNewComponent implements OnInit {
         console.error('problemas',err);
       });
     }else{    
+      cat.date_created=this.categoria.date_created;
       cat.date_modified = new Date();
       console.log("categoria"); 
       console.log(cat);

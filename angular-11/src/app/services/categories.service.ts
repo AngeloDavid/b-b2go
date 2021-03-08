@@ -7,7 +7,7 @@ import {category } from '../interfaces/interfaces';
 })
 export class CategoriesService {
 
-  constructor(private firebase: AngularFirestore) { }
+  constructor(public firebase: AngularFirestore) { }
 
   // Reportes
   getAllCategories(){
