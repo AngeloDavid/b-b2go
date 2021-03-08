@@ -21,6 +21,10 @@ export const PagesRoutes: Routes = [
   {
     path: 'profesionales-new',
     component: NewComponent
+  },
+  {
+    path:'profesionales/:idWorker',
+    component: NewComponent
   }
 
 ];

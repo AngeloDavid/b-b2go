@@ -4,6 +4,7 @@ import { WorkerService } from 'src/app/services/worker.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table'
 
+
 @Component({
   selector: 'app-workers',
   templateUrl: './workers.component.html',
@@ -20,8 +21,7 @@ export class WorkersComponent implements AfterViewInit {
   } ;
 
   constructor(
-    private workerServices: WorkerService,
-
+    private workerServices: WorkerService
   ){ 
     this.workerServices.getAllWorkers().subscribe(
       resp=>{
@@ -49,12 +49,12 @@ export class WorkersComponent implements AfterViewInit {
               }
             );
           }
-          console.log(data);
+          // console.log(data);
 
           return itemWork;
         } );
         this.dataSource.data= this.items;
-        console.log(this.items);
+        // console.log(this.items);
       },
       err =>{
         console.error(err);
@@ -70,5 +70,7 @@ export class WorkersComponent implements AfterViewInit {
   modifyCategory(element: any){
 
   }
+
+  
 
 }

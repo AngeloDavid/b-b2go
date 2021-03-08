@@ -90,7 +90,7 @@
                                 </div>
                                 <div fxFlex.gt-sm="20" fxFlex="20">
                                     <mat-form-field>
-                                        <mat-select style="height: 36px;"  placeholder="Estado" [(ngModel)]="worker.status" id="status" name="status" >
+                                        <mat-select style="height: 36px;" disabled="{{isEditable}}" placeholder="Estado" [(ngModel)]="worker.status" id="status" name="status" >
                                             <mat-option  value="1">Aspirante</mat-option>
                                             <mat-option  value="2">Habilitado</mat-option>
                                             <mat-option  value="0">Deshabilitado</mat-option>
@@ -108,7 +108,7 @@
                                         <!-- column -->
                                         <div fxFlex.gt-sm="50" fxFlex="50">
                                             <mat-form-field>
-                                                <mat-select required placeholder="Categoria" [(ngModel)]="worker.id_category" id="id_category" name="id_category" >
+                                                <mat-select disabled="{{isEditable}}" required placeholder="Categoria" [(ngModel)]="worker.id_category" id="id_category" name="id_category" >
                                                     <mat-option *ngFor="let item of Categories;" value="{{item.id}}">{{item.name}}</mat-option>
                                                 </mat-select>
                                             </mat-form-field>
@@ -125,13 +125,30 @@
                                 </mat-expansion-panel>
                             </mat-accordion> 
                             <br><br>
-                       
-                            <button right-align mat-raised-button color="primary" (click)="guardar()">
-                                <span *ngIf="isNew ; else elseBlock">Guardar</span>
-                                <ng-template #elseBlock>
-                                    Actualizar
+                            <div  fxLayout="row wrap" align="end">
+                                <div fxFlex.gt-sm="80" fxFlex="80">
+                                    <button right-align mat-raised-button color="basic" (click)="newWorker()">
+                                        <mat-icon>add_circle</mat-icon>Nuevo
+                                    </button>
+                                </div>
+                                <div  fxFlex.gt-sm="20" fxFlex="20"  *ngIf="!isNew; else elseBlock">
+                                    <button *ngIf="isEditable" right-align mat-raised-button color="accent" (click)="editar()">
+                                        <mat-icon>mode</mat-icon> editar
+                                    </button>
+                                    <button *ngIf="!isEditable" right-align mat-raised-button color="primary" (click)="guardar()">
+                                        <mat-icon>save</mat-icon>Actualizar
+                                    </button>
+                                </div>
+                                <ng-template  #elseBlock>
+                                    <div fxFlex.gt-sm="20" fxFlex="20" >
+                                        <button right-align mat-raised-button color="primary" (click)="guardar()">
+                                            <mat-icon>save</mat-icon>Guardar
+                                        </button>
+                                    </div>
                                 </ng-template>
-                            </button>
+                                
+                            </div>
+                            
                                        
                     </mat-card-content>
                 </mat-tab>
