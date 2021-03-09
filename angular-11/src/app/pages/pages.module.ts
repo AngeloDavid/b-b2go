@@ -16,6 +16,7 @@ import { ServicesComponent } from './services/services.component';
 import { WorkersComponent } from './workers/workers.component';
 import { ModalNewComponent } from './services/modal-new/modal-new.component';
 import { NewComponent } from './workers/new/new.component';
+import { ServiceWorkerComponent } from './workers/new/service-worker/service-worker.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { NewComponent } from './workers/new/new.component';
     ServicesComponent,
     WorkersComponent,
     ModalNewComponent,
-    NewComponent
+    NewComponent,
+    ServiceWorkerComponent
   ]
 })
 export class PagesModule { }

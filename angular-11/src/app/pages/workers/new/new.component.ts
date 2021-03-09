@@ -1,13 +1,14 @@
 import { Component, OnInit,ViewChild, AfterViewInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WorkerService } from 'src/app/services/worker.service';
+import { WorkerServiceService} from '../../../services/worker-service.service';
 import {category,service,worker } from '../../../interfaces/interfaces';
 import { CategoriesService } from '../../../services/categories.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
-
+import { ServiceWorkerComponent } from './service-worker/service-worker.component';
 @Component({
   selector: 'app-new',
   templateUrl: './new.component.html',
@@ -45,9 +46,11 @@ export class NewComponent  implements AfterViewInit{
   constructor(
       private CateService: CategoriesService,
       private WorkerService: WorkerService,
+      private ServiWorkService: WorkerServiceService,
       private route: ActivatedRoute,
       private router: Router,
-      private snackBar: MatSnackBar
+      private snackBar: MatSnackBar,
+      public dialog: MatDialog
   ) {
     this.CateService.getCategoriesEnable().subscribe (
       resp=>{
@@ -66,38 +69,85 @@ export class NewComponent  implements AfterViewInit{
         console.error(err);
       }
     );
+    const routerParams= this.route.snapshot.paramMap;
+    const idWorker = String(routerParams.get('idWorker'));
+
+    if(idWorker!= 'null'){
+      this.isNew=false;
+    this.isEditable= true;
+    this.WorkerService.getWorker(idWorker).subscribe(
+      resp=>{
+        const data = resp.data() as worker;
+        this.worker= data;
+        this.worker.id=resp.id;        
+        data.id_category.get().then( (resp: any)=>{
+          this.worker.catName = resp.data().name;
+          this.worker.id_category=resp.id;
+        })
+      }, 
+      err=>{
+        console.log(err);
+      });
+      
+      this.ServiWorkService.getAllServicesWorker(idWorker).subscribe(
+        resp=>{
+          // console.log(resp);
+          this.Services = resp.map( (e: any)=>{
+            let data = e.payload.doc.data() as service;
+            // console.log(data);
+            let service: service  = {
+              id: e.payload.doc.id,
+              order:data.order,
+              price:data.price,
+              isIva:data.isIva,
+              ivaIncluded:data.ivaIncluded,
+              time: data.time,
+              status:data.status,
+              note:data.note
+            }              
+            if(data.id_cat){
+              data.id_cat.get().then((resp:any)=>{
+                service.id_cat= resp.id;
+                service.serName= resp.data().name;
+                resp.data().id_catFather.get().then( (resp1: any)=>{
+                  service.catName = resp1.data().name;                    
+                });
+              }).catch(
+                (err: any)=>{
+                  console.error(err);
+                }
+              )
+            }  
+            
+            if (service.isIva){
+              if(service.ivaIncluded){
+                service.iva = ( service.price - (service.price / 1.12));
+                service.price = service.price - service.iva;                  
+              }else{
+                service.iva = (service.price * 0.12); 
+              }
+            }else{
+              service.iva = 0;
+            }
+            service.total = service.price + service.iva;
+            
+            // console.log(service);
+            return service;
+          })
+          this.dataSource.data= this.Services;
+        },err=>{})
+    }
+  
+    
    }
 
    ngAfterViewInit(): void {
-    const routerParams= this.route.snapshot.paramMap;
-    const idWorker = String(routerParams.get('idWorker'));
-    if(idWorker != "null"){
-      this.isNew=false;
-      this.isEditable= true;
-      this.WorkerService.getWorker(idWorker).subscribe(
-        resp=>{
-          const data = resp.data() as worker;
-          this.worker= data;
-          this.worker.id=resp.id;        
-          data.id_category.get().then( (resp: any)=>{
-            this.worker.catName = resp.data().name;
-            this.worker.id_category=resp.id;
-          })
-          // console.log(this.worker)        ;
-        }, 
-        err=>{
-          console.log(err);
-        });
-    }else{
-      this.newWorker();
-    }    
+  
     
   }
 
+  
   guardar(){
-
-    //console.log(this.worker);
-
     let wor: worker ={
       name:this.worker.name,
       lastname:this.worker.lastname,
@@ -140,7 +190,6 @@ export class NewComponent  implements AfterViewInit{
   }
 
   newWorker(){
-    this.router.navigate(['profesionales-new']);
     this.isNew=true;
     this.isEditable= false;
     this.worker ={
@@ -164,9 +213,21 @@ export class NewComponent  implements AfterViewInit{
     this.isEditable =! this.isEditable;
   }
 
+  modifyCategory(Service: service){
+
+  }
+
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 2000,
+    });
+  }
+
+  createService(){
+    const dialogRef = this.dialog.open(ServiceWorkerComponent);
+
+    dialogRef.afterClosed().subscribe(result => {      
+      console.log(`Dialog result: ${result}`);
     });
   }
 
