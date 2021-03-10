@@ -1,7 +1,88 @@
-<p>service-worker works!</p>
 <mat-card>
-    <mat-card-title>Datos Personales</mat-card-title>
+    <mat-card-title>Nuevo Servicio </mat-card-title>
+    <mat-dialog-content>
+
+    </mat-dialog-content>
     <div fxLayout="row wrap">
-     
+        <div fxFlex.gt-sm="50" fxFlex="50">
+            <mat-form-field>
+                <mat-select required (selectionChange)="selectCat()"  disabled="{{isEditable}}"  class="example-select" placeholder="Categoria"   [(ngModel)]="service.id_ServCat" >
+                    <mat-option  *ngFor="let item of itemsCategory; " value="{{item.id}}">{{ item.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div fxFlex.gt-sm="50" fxFlex="50">
+            <mat-form-field *ngIf="itemsServices.length !=0 " >
+                <mat-select required  class="example-select"  disabled="{{isEditable}}"   placeholder="Servicio"  [(ngModel)]="service.id_cat" >
+                    <mat-option  *ngFor="let item of itemsServices; " value="{{item.id}}">{{ item.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div fxFlex.gt-sm="30" fxFlex="30">
+            <mat-form-field>
+                <input min="0" matInput id="order" name="order" #order="ngModel"  disabled="{{isEditable}}" [(ngModel)]="service.order"   placeholder="Orden">
+            </mat-form-field>
+        </div>
+        <div fxFlex.gt-sm="70" fxFlex="70">
+            <mat-form-field>
+                <input matInput id="note" name="note" #note="ngModel"  disabled="{{isEditable}}" [(ngModel)]="service.note"   placeholder="Descripcion">
+            </mat-form-field>
+        </div>
     </div>
+    <div fxLayout="row wrap">
+        <div fxFlex.gt-sm="50" fxFlex="50">
+            <mat-form-field>
+                <input matInput type="number" id="price" name="price" #price="ngModel" required disabled="{{isEditable}}" [(ngModel)]="service.price"   placeholder="Precio">
+            </mat-form-field>
+        </div>
+        <div fxFlex.gt-sm="50" fxFlex="50">
+            <mat-form-field>
+                <input matInput  type="time" id="time" name="time" #price="ngModel" required disabled="{{isEditable}}" [(ngModel)]="service.timestring"  max="04:00"  min="00:30" placeholder="Tiempo">            </mat-form-field>
+        </div>
+    </div>
+    <div fxLayout="row wrap">
+        <div fxFlex.gt-sm="30" fxFlex="30">
+            <section class="example-section">
+                <mat-checkbox required class="example-margin"   disabled="{{isEditable}}" [(ngModel)]="service.isIva">IVA</mat-checkbox>
+              </section>
+        </div>
+        <div fxFlex.gt-sm="30" fxFlex="30">
+            <section *ngIf="service.isIva" class="example-section">
+                <mat-checkbox class="example-margin"  disabled="{{isEditable}}"  [(ngModel)]="service.ivaIncluded">IVA Incluido</mat-checkbox>
+              </section>
+        </div>
+        <div fxFlex.gt-sm="40" fxFlex="40">
+            <mat-slide-toggle  disabled="{{isEditable}}"  *ngIf="!isNew"
+            class="example-margin"
+            color="accent"
+            [(ngModel)]="service.status"                
+            ><span *ngIf="service.status ; else elseBlock">Habilitado</span>
+            <ng-template #elseBlock>
+                Deshabilitado
+            </ng-template>    
+            </mat-slide-toggle>
+        </div>
+    </div>
+
+    <br>
+    <div  fxLayout="row wrap" align="end">
+       
+        <div  fxFlex.gt-sm="100" fxFlex="100"  *ngIf="!isNew; else elseBlock">
+            <button *ngIf="isEditable" right-align mat-raised-button color="accent" (click)="editar()">
+                <mat-icon>mode</mat-icon> editar
+            </button>
+            <button [mat-dialog-close]="isOK" *ngIf="!isEditable" right-align mat-raised-button color="primary" (click)="guardar()">
+                <mat-icon>save</mat-icon>Actualizar
+            </button>
+        </div>
+        <ng-template  #elseBlock>
+            <div fxFlex.gt-sm="100" fxFlex="100" >
+                <button [mat-dialog-close]="isOK"  right-align mat-raised-button color="primary" (click)="guardar()">
+                    <mat-icon>save</mat-icon>Guardar
+                </button>
+            </div>
+        </ng-template>
+        
+    </div>
+    
 </mat-card>

@@ -110,7 +110,8 @@ export class NewComponent  implements AfterViewInit{
                 service.id_cat= resp.id;
                 service.serName= resp.data().name;
                 resp.data().id_catFather.get().then( (resp1: any)=>{
-                  service.catName = resp1.data().name;                    
+                  service.catName = resp1.data().name; 
+                  service.id_ServCat = resp1.id;                   
                 });
               }).catch(
                 (err: any)=>{
@@ -213,9 +214,7 @@ export class NewComponent  implements AfterViewInit{
     this.isEditable =! this.isEditable;
   }
 
-  modifyCategory(Service: service){
-
-  }
+  
 
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
@@ -224,10 +223,35 @@ export class NewComponent  implements AfterViewInit{
   }
 
   createService(){
-    const dialogRef = this.dialog.open(ServiceWorkerComponent);
+    const diaconfig = new MatDialogConfig();
+    diaconfig.data = {
+        isnew:true,        
+        idWorker:this.worker.id
+      };
+    const dialogRef = this.dialog.open(ServiceWorkerComponent, diaconfig);
+
+    dialogRef.afterClosed().subscribe(result => {     
+      console.log(`Dialog result: ${result}`); 
+      if(result)      
+        this.openSnackBar('Servicio agregado correctamente','Undo')
+    });
+  }
+
+  modifyService(Service: service){
+    const diaconfig = new MatDialogConfig();
+    diaconfig.data = {
+        isnew:false,        
+        idWorker:this.worker.id,
+        id: Service.id,
+        id_ServCat: Service.id_ServCat,
+        id_cat: Service.id_cat
+      };
+    const dialogRef = this.dialog.open(ServiceWorkerComponent, diaconfig);
 
     dialogRef.afterClosed().subscribe(result => {      
       console.log(`Dialog result: ${result}`);
+      if(result)      
+        this.openSnackBar('Servicio modificado correctamente','Undo')
     });
   }
 

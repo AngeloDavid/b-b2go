@@ -13,6 +13,11 @@ export class ServicesService {
     return this.firebase.collection('categories', ref => ref.where('isFather','==',false).orderBy('date_created')).snapshotChanges();
   }
 
+  getAllServicesFather(id:any){ 
+    const refservice = this.firebase.doc('categories/'+id).ref;
+   return  this.firebase.collection('categories', ref => ref.where('id_catFather','==',refservice)).snapshotChanges();
+ }
+
   getCategory(id:any){
     return this.firebase.collection('categories').doc(id).get();
   }

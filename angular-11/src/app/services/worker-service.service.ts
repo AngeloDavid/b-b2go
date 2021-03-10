@@ -29,8 +29,8 @@ export class WorkerServiceService {
 
   }
   
-  geServiceWorker(id:string){ 
-    return this.firebase.collection('services').doc(id);
+  getServiceWorker(id:string){ 
+    return this.firebase.collection('services').doc(id).get();
   }
   
   createServiceWorker(serviceWork: service ){

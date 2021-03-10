@@ -45,8 +45,10 @@ export interface service{
     date_modified?:Date;
     id_cat?:any;
     id_worker?:any;
+    id_ServCat?:any;
     catName?:string;
     serName?:string;
     iva?:number;
     total?:number;
+    timestring?:string;
 }
