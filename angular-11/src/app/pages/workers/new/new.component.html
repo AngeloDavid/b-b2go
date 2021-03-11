@@ -5,12 +5,21 @@
             <img mat-card-image src="assets/images/background/profile-bg.jpg" alt="Photo of a Shiba Inu">
             <mat-card-content>
                 <div class="pro-img">
-                    <img src="assets/images/users/4.jpg" width="100" alt="user" class="img-circle">
+                    <img *ngIf="worker.img===''; else elseBlock" src="assets/images/users/4.jpg" width="100" alt="user" class="img-circle">
+                    <ng-template #elseBlock>
+                        <img [src]="worker.img" width="100" alt="user" class="img-circle">
+                    </ng-template>                    
                 </div>
                 <h3 class="m-b-0">{{ worker.name }} {{ worker.lastname }} </h3>
                 <h6 class="m-t-0 "> {{ worker.businessName }} &amp; {{ worker.catName}}</h6>
                 <mat-card-actions>
-                    <button mat-raised-button color="warn">Subir Foto</button>
+                    <div *ngIf="!isNew" class="myfilebrowser">
+                        <p>{{file.name}}</p>
+                        <input  id="fileUpload"  accept="image/*" type="file" (change)="upload($event)">
+                        <mat-progress-bar mode="determinate" value="{{percentage}}"></mat-progress-bar>  
+                        <p>{{ percentage}}%</p>                    
+                        <button mat-raised-button color="warn">Subir Foto</button>
+                    </div>                          
                 </mat-card-actions>
                 <div fxLayout="row" fxLayoutWrap="wrap" class="m-t-30">
                     <div fxFlex.gt-sm="33.33%" fxFlex.gt-xs="33.33%" fxFlex="100">
@@ -126,12 +135,12 @@
                             </mat-accordion> 
                             <br><br>
                             <div  fxLayout="row wrap" align="end">
-                                <div fxFlex.gt-sm="80" fxFlex="80">
+                                <!-- <div fxFlex.gt-sm="80" fxFlex="80">
                                     <button right-align mat-raised-button color="basic" (click)="newWorker()">
                                         <mat-icon>add_circle</mat-icon>Nuevo
                                     </button>
-                                </div>
-                                <div  fxFlex.gt-sm="20" fxFlex="20"  *ngIf="!isNew; else elseBlock">
+                                </div> -->
+                                <div  fxFlex.gt-sm="100" fxFlex="100"  *ngIf="!isNew; else elseBlock1">
                                     <button *ngIf="isEditable" right-align mat-raised-button color="accent" (click)="editar()">
                                         <mat-icon>mode</mat-icon> editar
                                     </button>
@@ -139,8 +148,8 @@
                                         <mat-icon>save</mat-icon>Actualizar
                                     </button>
                                 </div>
-                                <ng-template  #elseBlock>
-                                    <div fxFlex.gt-sm="20" fxFlex="20" >
+                                <ng-template  #elseBlock1>
+                                    <div fxFlex.gt-sm="100" fxFlex="100" >
                                         <button right-align mat-raised-button color="primary" (click)="guardar()">
                                             <mat-icon>save</mat-icon>Guardar
                                         </button>

@@ -32,11 +32,17 @@ export class NewComponent  implements AfterViewInit{
     catName:'',
     skill:'',
     experience:'',
-    id_category:''
+    id_category:'',
+    img:''
   }
   isNew:boolean=true;
   isEditable:boolean=false;
-
+  percentage:number=0;
+  file:any= {
+    name:'',
+    size:0,
+    type:''
+  };
   displayedColumns: string[] = ['id', 'category','service','note', 'price', 'iva','total','time','status','act'];
   dataSource = new MatTableDataSource<service>(this.Services);
 
@@ -52,6 +58,7 @@ export class NewComponent  implements AfterViewInit{
       private snackBar: MatSnackBar,
       public dialog: MatDialog
   ) {
+    console.log(this.isNew);
     this.CateService.getCategoriesEnable().subscribe (
       resp=>{
         this.Categories = resp.map( (e: any)=>{
@@ -160,6 +167,7 @@ export class NewComponent  implements AfterViewInit{
       status: this.worker.status,
       skill: this.worker.skill,
       experience: this.worker.experience,
+      img:this.worker.img,
       id_category: this.CateService.firebase.doc('categories/'+this.worker.id_category).ref,
     }
 
@@ -206,7 +214,8 @@ export class NewComponent  implements AfterViewInit{
       catName:'',
       skill:'',
       experience:'',
-      id_category:''
+      id_category:'',
+      img:''
     }
   }
 
@@ -214,11 +223,40 @@ export class NewComponent  implements AfterViewInit{
     this.isEditable =! this.isEditable;
   }
 
+  upload(event:any){
+    this.file = event.target.files.item(0);
+    console.log(this.file);
+    if( this.file.type =='image/jpeg' && this.file.size<=50000 ){      
+      this.WorkerService.uploadWorker(this.file,this.worker.id as string).snapshotChanges().subscribe(
+        resp=>{
+          resp?.ref.getDownloadURL().then(url=>{
+            this.worker.img=url;
+            this.WorkerService.setWorker(this.worker.id,{img:this.worker.img}).then(resp=>{
+              console.log(resp);
+            }).catch(err=>{
+              console.error(err);
+            })
+          }).catch(err=>{
+            console.error(err);
+          });          
+        },
+        err=>{console.error(err)} );
+
+      this.WorkerService.uploadWorker(this.file,this.worker.id as string).percentageChanges().subscribe(
+        resp=>{
+          this.percentage = Math.round(resp as number);        
+        },
+        err=>{console.error(err)});
+    }else{
+      this.openSnackBar("El archivo no tiene el formato correcto","undo");
+    }
+  }
+
   
 
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
-      duration: 2000,
+      duration: 5000,
     });
   }
 

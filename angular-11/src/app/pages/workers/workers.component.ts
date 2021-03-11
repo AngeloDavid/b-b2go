@@ -14,7 +14,7 @@ export class WorkersComponent implements AfterViewInit {
 
   items : any =[];
 
-  displayedColumns: string[] = ['id', 'ced', 'name', 'email','phone','address','category','status','act'];
+  displayedColumns: string[] = ['id', 'img','ced', 'name', 'email','phone','address','category','status','act'];
   dataSource = new MatTableDataSource<worker>(this.items);
   @ViewChild(MatPaginator)set appprueba(paginator: MatPaginator) {
     this.dataSource.paginator = paginator;
@@ -37,7 +37,8 @@ export class WorkersComponent implements AfterViewInit {
             phone1: data.phone1	,
             address: data.address,
             date_created: data.date_created,
-            status: data.status
+            status: data.status,
+            img: data.img
           };
           if(data.id_category){
             data.id_category.get().then((resp : any)=>{
