@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title> 
+      <ion-select value="brown" okText="OK" cancelText="Cerrar">
+        <ion-select-option value="brown">Mi Casa</ion-select-option>
+        <ion-select-option value="blonde">Mi Trabajo</ion-select-option>
+        <ion-select-option value="black">Otra Direccion</ion-select-option>
+        <ion-select-option value="red">Mi escuela</ion-select-option>
+      </ion-select>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="secondary">
+        <ion-icon slot="icon-only" ios="calendar-outline" md="calendar-sharp"></ion-icon>
+      </ion-button>      
+    </ion-buttons>
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title> 
+        <ion-select value="brown" okText="OK" cancelText="Cerrar">
+          <ion-select-option value="brown">Mi Casa</ion-select-option>
+          <ion-select-option value="blonde">Mi Trabajo</ion-select-option>
+          <ion-select-option value="black">Otra Direccion</ion-select-option>
+          <ion-select-option value="red">Mi escuela</ion-select-option>
+        </ion-select>
+      </ion-title>      
+    </ion-toolbar>
+    
+  </ion-header> -->
+
+  <div id="container">
+    <ion-searchbar placeholder="¿Como te apoyamos?" showCancelButton="focus" cancelButtonIcon="close" cancel-button-text="Cancelar"></ion-searchbar>
+    <strong class="capitalize" >{{ folder }}</strong>
+    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  </div>
+</ion-content>
