@@ -1,0 +1,15 @@
+<mat-card>
+    <mat-card-content>        
+        <mat-card-subtitle align="center" >Registrese en la App</mat-card-subtitle>
+     
+            <mat-form-field>
+                <input matInput id="email" name="email" placeholder="Nombre" [(ngModel)]="user.email" #email="ngModel" > 
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput id="password" type="password" name="password" placeholder="Descripcion" [(ngModel)]="user.password" #password="ngModel"> </mat-form-field>
+             <br>
+             <button (click)=" signup()" mat-raised-button color="Basic" >
+             Nuevo</button> 
+         
+    </mat-card-content>
+</mat-card>

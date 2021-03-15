@@ -4,7 +4,6 @@ import { CategoriesComponent } from './categories/categories.component';
 import { ServicesComponent } from './services/services.component';
 import { WorkersComponent } from './workers/workers.component';
 import { NewComponent } from './workers/new/new.component';
-
 export const PagesRoutes: Routes = [
   {
     path: 'categorias',

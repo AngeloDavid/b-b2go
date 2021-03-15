@@ -1,6 +1,9 @@
 import { Routes } from '@angular/router';
 
 import { FullComponent } from './layouts/full/full.component';
+import {SignInComponent} from './userPages/sign-in/sign-in.component';
+import {SignUpComponent} from './userPages/sign-up/sign-up.component';
+import { AuthGuard } from "./shared/guard/auth.guard";
 
 export const AppRoutes: Routes = [
   {
@@ -9,7 +12,7 @@ export const AppRoutes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/dashboard',
+        redirectTo: '/ingresar',
         pathMatch: 'full'
       },
       {
@@ -20,12 +23,24 @@ export const AppRoutes: Routes = [
       {
         path: '',
         loadChildren:
-          () => import('./pages/pages.module').then(m => m.PagesModule)
+          () => import('./pages/pages.module').then(m => m.PagesModule),
+          canActivate: [AuthGuard]
       },
       {
         path: 'dashboard',
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
+       
       }
-    ]
+    ],
+    canActivate: [AuthGuard]
+  },
+  {
+    path:'ingresar',
+    component: SignInComponent,
+    pathMatch: 'full'
+  },
+  {
+    path:'registarse',
+    component:SignUpComponent
   }
 ];
