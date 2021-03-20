@@ -19,13 +19,14 @@ export class AuthService {
   ) {
 
     this.afAuth.authState.subscribe(user=>{
+      console.log("constructor", user);
       if(user){
         this.userData=user;
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user') as string);
       }else{
         localStorage.setItem('user', '');
-        JSON.parse(localStorage.getItem('user') as string);
+        // console.log(JSON.parse(localStorage.getItem('user') as string));
       }
     });
 
@@ -37,8 +38,7 @@ export class AuthService {
         this.ngZone.run(() => {
           this.router.navigate(['dashboard']);
         });
-        console.log(result.user);
-        // this.SetUserData(result.user);
+        console.log(result.user);        
       }).catch((error: any) => {
         window.alert(error.message)
       })
@@ -72,8 +72,12 @@ export class AuthService {
   }
 
   get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user')as string);
-    return (user !== null && user.emailVerified !== false) ? true : false;
+    if(localStorage.getItem('user')){
+      const user = JSON.parse(localStorage.getItem('user')as string);
+      return (user !== null && user.emailVerified !== false) ? true : false;
+    }else{
+      return false;
+    } 
   }
 
    // Auth logic to run auth providers
@@ -104,11 +108,17 @@ export class AuthService {
     })
   }
 
+  GetUserData(user:any){
+    return this.afs.collection('users').doc(user.uid).get();
+  }
+
   // Sign out 
   SignOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
+      this.ngZone.run(() => {
       this.router.navigate(['ingresar']);
+      });
     })
   }
 

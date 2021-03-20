@@ -1,16 +1,21 @@
-
-    <mat-card>
-        <mat-card-content>        
-            <mat-card-subtitle align="center" >Ingrese a la App</mat-card-subtitle>
-         
-                <mat-form-field>
-                    <input matInput id="email" name="email" placeholder="Nombre" [(ngModel)]="user.email" #email="ngModel" > 
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput id="password" type="password" name="password" placeholder="Descripcion" [(ngModel)]="user.password" #password="ngModel"> </mat-form-field>
-                 <br>
-                 <button (click)=" login()" mat-raised-button color="Basic" >
-                 Nuevo</button> 
+<div class="login-register">
+    <div class="login-box">
+        <mat-card>
+            <mat-card-content align="center">        
+                <mat-card-title  >B&b2GO</mat-card-title>
+                <mat-card-subtitle >Ingrese a la App</mat-card-subtitle>
              
-        </mat-card-content>
-    </mat-card>
+                    <mat-form-field>
+                        <input matInput id="email" name="email" placeholder="E-mail" [(ngModel)]="user.email" #email="ngModel" > 
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput id="password" type="password" name="password" placeholder="Contraseña" [(ngModel)]="user.password" #password="ngModel"> </mat-form-field>
+                     <br>
+                     <button (click)=" login()" mat-raised-button color="primary"  >
+                     Ingresar</button> 
+                 
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+    

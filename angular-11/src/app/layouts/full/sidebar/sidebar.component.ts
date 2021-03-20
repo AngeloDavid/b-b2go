@@ -8,7 +8,7 @@ import { MenuItems } from '../../../shared/menu-items/menu-items';
 })
 export class AppSidebarComponent implements OnDestroy {
   mobileQuery: MediaQueryList;
-
+  userData:any;
   private _mobileQueryListener: () => void;
 
   constructor(
@@ -19,6 +19,7 @@ export class AppSidebarComponent implements OnDestroy {
     this.mobileQuery = media.matchMedia('(min-width: 768px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    this.userData=JSON.parse(localStorage.getItem('user') as string);
   }
 
   ngOnDestroy(): void {
