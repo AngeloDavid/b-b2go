@@ -35,9 +35,22 @@
     
   </ion-header> -->
 
-  <div id="container">
-    <ion-searchbar placeholder="¿Como te apoyamos?" showCancelButton="focus" cancelButtonIcon="close" cancel-button-text="Cancelar"></ion-searchbar>
-    <strong class="capitalize" >{{ folder }}</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div id="container">    
+ 
+    <ion-grid>
+      <ion-row>
+        <ion-col >
+          <ion-searchbar placeholder="¿Como te apoyamos?" showCancelButton="focus" cancelButtonIcon="close" cancel-button-text="Cancelar"></ion-searchbar>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-align-items-center">
+        <ion-col class="ion-align-items-center" size-lg *ngFor="let item of servicios" size="6">        
+          <ion-nav-link router-direwction="forward"  [component]="ServicePage">
+            <img src="../../assets/img/background.png">
+          <ion-label position="floating">{{item.name}}</ion-label>          
+          </ion-nav-link>          
+        </ion-col>
+      </ion-row>
+    </ion-grid>    
   </div>
 </ion-content>
