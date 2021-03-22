@@ -44,11 +44,9 @@
         </ion-col>
       </ion-row>
       <ion-row class="ion-align-items-center">
-        <ion-col class="ion-align-items-center" size-lg *ngFor="let item of servicios" size="6">        
-          <ion-nav-link router-direwction="forward"  [component]="ServicePage">
+        <ion-col class="ion-align-items-center" size-lg *ngFor="let item of servicios" size="6" (click)="openService(item.id)">
             <img src="../../assets/img/background.png">
-          <ion-label position="floating">{{item.name}}</ion-label>          
-          </ion-nav-link>          
+            <ion-label position="floating">{{item.name}}</ion-label>                    
         </ion-col>
       </ion-row>
     </ion-grid>    

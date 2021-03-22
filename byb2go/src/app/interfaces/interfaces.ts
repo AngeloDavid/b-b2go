@@ -52,6 +52,7 @@ export interface service{
     iva?:number;
     total?:number;
     timestring?:string;
+    worker?:worker;
 }
 
 export interface User {

@@ -12,7 +12,7 @@ const routes: Routes = [
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
   },
   {
-    path: 'service',
+    path: 'servicio/:id',
     loadChildren: () => import('./service/service.module').then( m => m.ServicePageModule)
   }
 ];

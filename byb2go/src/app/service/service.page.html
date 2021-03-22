@@ -1,9 +1,31 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>service</ion-title>
+    <ion-buttons  slot="start">
+      <ion-button (click)="backPages()" ><ion-icon name="close"></ion-icon></ion-button>
+      
+    </ion-buttons>
+    <ion-title align="center"> 
+      {{ title }}
+    </ion-title>    
   </ion-toolbar>
+  
 </ion-header>
 
 <ion-content>
-
+<ion-list>
+  <ion-item *ngFor="let item of servicios">
+    <ion-thumbnail  slot="start" >      
+      <img   [src]="item.worker?.img">
+    </ion-thumbnail >
+    <ion-label>
+      <h1>{{item.worker?.businessName}}</h1>
+      <h2>{{item.worker?.name}} {{item.worker?.lastname}}</h2>
+      <h3>{{item.worker?.experience}}</h3>
+      <p>
+        {{item.worker?.skill}}
+      </p>
+      <ion-button expand="block"> tu corte desde {{item.total}}</ion-button>
+    </ion-label>
+  </ion-item>
+</ion-list>
 </ion-content>

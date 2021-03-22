@@ -11,11 +11,13 @@ export class WorkerServiceService {
     public firebase: AngularFirestore
   ) { }
 
+    // optener servicios del trabajador
   getAllServicesWorker(id:any){ 
      const refservice = this.firebase.doc('workers/'+id).ref;
     return  this.firebase.collection('services', ref => ref.where('id_worker','==',refservice)).snapshotChanges();
   }
-
+  
+  // optener servicios del trabajador
   getAll(servicio: worker){
     let servicios = this.firebase.collection('workers').doc('yadRtfPm3r2SB4DugfYG');
     console.log("servicios",servicios);
@@ -28,6 +30,13 @@ export class WorkerServiceService {
     })
 
   }
+
+  //optener servicio por categoria
+  getAllServicesCat(id:any){ 
+    console.log('worker-serv',id);
+    const refservice = this.firebase.doc('categories/'+id).ref;
+   return  this.firebase.collection('services', ref => ref.where('id_cat','==',refservice).where('status','==',true).orderBy('order')).snapshotChanges();
+ }
   
   getServiceWorker(id:string){ 
     return this.firebase.collection('services').doc(id).get();
