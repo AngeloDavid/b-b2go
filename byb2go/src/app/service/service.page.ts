@@ -84,4 +84,9 @@ export class ServicePage implements OnInit {
     this.navCtrl.back();
   }
 
+  openWorker(id:string,idser:string){
+    console.log('openworker',id,idser);
+    this.navCtrl.navigateForward(['trabajador',id,idser])
+  }
+
 }

@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-buttons  slot="start">
+      <ion-button color="primary" (click)="backPages()" >
+        <ion-icon  slot="icon-only" name="chevron-back"></ion-icon></ion-button>
+      
+    </ion-buttons>
+    <ion-title align="center"> 
+      
+    </ion-title>    
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+  <ion-row>
+    <ion-col style="height: 200px;">
+      <ion-item>
+
+      
+      <ion-thumbnail  slot="start" >      
+        <img *ngIf="worker?.img==''; else elseblock" src="../../assets/img/background.png">
+        <ng-template #elseblock>
+          <img  [src]="worker?.img">
+        </ng-template>      
+      </ion-thumbnail >
+      <ion-label>
+        <h1> {{worker?.businessName}}</h1>
+        <h2>{{worker?.name}} {{worker?.lastname}}</h2>
+        <h3>{{worker?.experience}}</h3>
+        <p>
+          {{worker?.skill}}<br>          
+        </p>        
+      </ion-label>
+      <ion-buttons  slot="end">
+        <ion-button color="primary"  >
+          <ion-icon name="star"></ion-icon></ion-button>
+        
+      </ion-buttons>
+    </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-list>
+      <ion-item *ngFor="let item of servicios; let i = index;">
+        <ion-chip *ngIf="item.selected; else elseblock1" color="secondary" slot="start">
+          <ion-label >{{i+1}}</ion-label>
+        </ion-chip>       
+        <ng-template #elseblock1>
+          <ion-chip  slot="start">
+            <ion-label >{{i+1}}</ion-label>
+          </ion-chip>   
+        </ng-template>
+        <ion-label>
+          <h3> {{ item.serName}} </h3>
+          <p> {{ item.note}} <br>
+            <ion-icon name="hourglass"></ion-icon> {{item.time.toDate() | date:'HH:mm'}} &nbsp;&nbsp;
+            <ion-icon name="cash"></ion-icon> {{item.total | currency : 'USD'}}
+          </p>
+         </ion-label> 
+
+        <ion-buttons  slot="end">
+          <ion-button color="primary" (click)="addCant(i,true)"><ion-icon name="remove-circle"></ion-icon></ion-button>
+          <ion-label>{{ item.cant}}</ion-label>
+          <ion-button color="primary"  (click)="addCant(i,false)"> <ion-icon name="add-circle"></ion-icon></ion-button>
+        </ion-buttons>
+        
+      </ion-item>
+    </ion-list>
+  </ion-row>
+  <ion-row>
+    <ion-col  class="ion-align-self-center" align="center">
+      <h3>Total Pedido</h3>
+      <h4>{{shop.total | currency : 'USD'}}</h4>
+    </ion-col>
+  </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-buttons align="center" >
+    <ion-button  style="margin: auto;"  size="large" expand="block" fill="outline" color="secondary"  >
+      Reservar</ion-button>    
+    <ion-button style="margin: auto;"  size="large" expand="block" fill="outline" color="primary"  >
+      Inmediato</ion-button>
+  </ion-buttons>
+
+</ion-footer>

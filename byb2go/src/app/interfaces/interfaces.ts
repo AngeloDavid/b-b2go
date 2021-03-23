@@ -53,6 +53,8 @@ export interface service{
     total?:number;
     timestring?:string;
     worker?:worker;
+    selected?:boolean;
+    cant?:number;
 }
 
 export interface User {

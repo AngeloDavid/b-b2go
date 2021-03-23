@@ -1,7 +1,8 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons  slot="start">
-      <ion-button (click)="backPages()" ><ion-icon name="close"></ion-icon></ion-button>
+      <ion-button color="secondary" (click)="backPages()" >
+        <ion-icon  slot="icon-only" name="close"></ion-icon></ion-button>
       
     </ion-buttons>
     <ion-title align="center"> 
@@ -13,19 +14,24 @@
 
 <ion-content>
 <ion-list>
-  <ion-item *ngFor="let item of servicios">
-    <ion-thumbnail  slot="start" >      
-      <img   [src]="item.worker?.img">
-    </ion-thumbnail >
-    <ion-label>
-      <h1>{{item.worker?.businessName}}</h1>
-      <h2>{{item.worker?.name}} {{item.worker?.lastname}}</h2>
-      <h3>{{item.worker?.experience}}</h3>
-      <p>
-        {{item.worker?.skill}}
-      </p>
-      <ion-button expand="block"> tu corte desde {{item.total}}</ion-button>
-    </ion-label>
-  </ion-item>
+  <div *ngFor="let item of servicios">
+    <ion-item *ngIf= "item.worker?.status==2">
+      <ion-thumbnail  slot="start" >      
+        <img *ngIf="item.worker?.img==''; else elseblock" src="../../assets/img/background.png">
+        <ng-template #elseblock>
+          <img  [src]="item.worker?.img">
+        </ng-template>      
+      </ion-thumbnail >
+      <ion-label>
+        <h1>{{item.worker?.businessName}}</h1>
+        <h2>{{item.worker?.name}} {{item.worker?.lastname}}</h2>
+        <h3>{{item.worker?.experience}}</h3>
+        <p>
+          {{item.worker?.skill}}<br>          
+        </p>
+        <ion-button (click)="openWorker(item.id_worker,item.id)" expand="block"> tu corte desde {{item.total | currency : 'USD'}}</ion-button>
+      </ion-label>
+    </ion-item>
+  </div>  
 </ion-list>
 </ion-content>

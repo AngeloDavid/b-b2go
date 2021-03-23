@@ -14,7 +14,7 @@ export class WorkerServiceService {
     // optener servicios del trabajador
   getAllServicesWorker(id:any){ 
      const refservice = this.firebase.doc('workers/'+id).ref;
-    return  this.firebase.collection('services', ref => ref.where('id_worker','==',refservice)).snapshotChanges();
+    return  this.firebase.collection('services', ref => ref.where('id_worker','==',refservice).where('status','==',true).orderBy('order')).snapshotChanges();
   }
   
   // optener servicios del trabajador
@@ -35,6 +35,7 @@ export class WorkerServiceService {
   getAllServicesCat(id:any){ 
     console.log('worker-serv',id);
     const refservice = this.firebase.doc('categories/'+id).ref;
+    // return  this.firebase.collection('services', ref => ref.where('id_cat','==',refservice).where('status','==',true)).snapshotChanges();
    return  this.firebase.collection('services', ref => ref.where('id_cat','==',refservice).where('status','==',true).orderBy('order')).snapshotChanges();
  }
   
