@@ -1,0 +1,41 @@
+
+<ion-content>
+  <div class="login-register">
+    <div class="login-box">
+      <ion-card>    
+        <ion-card-content >
+          <h1 align="center" >B&b2go</h1>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-label>Email</ion-label>
+                <ion-input [(ngModel)]="user.email"  name="email" id="email" #email="ngModel" type="email"  placeholder="Email"></ion-input>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-label>Contraseña</ion-label>
+                <ion-input [(ngModel)]="user.password"  name="password" id="lastnpasswordame" #password="ngModel" type="password" placeholder="Contraseña"></ion-input>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-button (click)="login()" shape="round"  style="margin: auto;"  size="small" expand="block" color="secondary"  >Ingresar</ion-button>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <p align="center"> o conectate con: <br> </p>                
+                  <ion-button  shape="round"   size="small" expand="block" fill="solid" color="primary"  >
+                    <ion-icon name="logo-facebook"></ion-icon>&nbsp;&nbsp;  Facebook</ion-button> <br>
+                  <ion-button  shape="round"  size="small" expand="block" fill="solid" color="danger"  >
+                    <ion-icon name="logo-google"></ion-icon>&nbsp; &nbsp;  Google</ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>    
+    </div>
+  </div> 
+  
+</ion-content>

@@ -62,6 +62,12 @@ export interface User {
     email: string;
     password?:string;
     displayName?: string;
+    lastname?:string;
+    name?:string;
     photoURL?: string;
+    date_brith?:Date;
+    phone?:string;
     emailVerified: boolean;
+    type?:number;
+    iscompleted?:boolean;
  }

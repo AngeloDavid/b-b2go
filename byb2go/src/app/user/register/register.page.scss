@@ -1,0 +1,41 @@
+ion-content{
+    height: 100vh;
+    display: flex;
+    background-size: cover;
+    align-items: center;
+}
+ion-card{
+    margin-left: 2%;
+    margin-right: 2%;
+    padding-bottom: 5%;
+    padding-top: 5%;
+    
+    vertical-align: middle;
+    color: white;
+    background: grey;
+}
+
+ion-card{
+    ion-input {
+        border-bottom: 1px solid white;
+    }
+    ion-datetime {
+        border-bottom: 1px solid white;
+        color: #bfbfbf;
+    }
+}
+
+
+.login-register{
+    display: flex;
+    background-size: cover;
+    align-items: center;
+     background-color: white; 
+    // background-image: url('../../../assets/images/background/fondo.jpg');
+}
+.login-box{
+    // max-width: 400px;        
+    min-width: 90%;
+    margin: auto;   
+    vertical-align: middle;
+}  

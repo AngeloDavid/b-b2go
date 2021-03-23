@@ -35,21 +35,30 @@ export class AuthService {
    SignIn(email: string, password: string) {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result: any) => {
-        this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
-        });
+        this.GetUserData(result.user).subscribe((resp)=>{
+          const user = resp.data() as User;
+          user.uid= resp.id;          
+          if(user.type==2){
+            localStorage.setItem('user',JSON.stringify(user));
+            console.log(user);
+            this.ngZone.run(() => {
+              this.router.navigate(['home']);
+            });
+          }          
+        })        
         console.log(result.user);        
       }).catch((error: any) => {
         window.alert(error.message)
       })
   }
 
-  SignUp(email: string, password:string) {
-    return this.afAuth.createUserWithEmailAndPassword(email, password)
+  SignUp(newUser: User) {
+    return this.afAuth.createUserWithEmailAndPassword(newUser.email, newUser.password)
       .then((result: any) => {
         /* Call the SendVerificaitonMail() function when new user sign 
-        up and returns promise */        
-        this.SetUserData(result.user);
+        up and returns promise */  
+        newUser.uid=result.user.uid;      
+        this.SetUserData(newUser);
       }).catch((error) => {
         window.alert(error.message)
       })
@@ -74,6 +83,7 @@ export class AuthService {
   get isLoggedIn(): boolean {
     if(localStorage.getItem('user')){
       const user = JSON.parse(localStorage.getItem('user')as string);
+      console.log(user);
       return (user !== null && user.emailVerified !== false) ? true : false;
     }else{
       return false;
@@ -85,7 +95,7 @@ export class AuthService {
     return this.afAuth.signInWithPopup(provider)
     .then((result) => {
        this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['home']);
         })
       this.SetUserData(result.user);
     }).catch((error) => {
@@ -95,20 +105,14 @@ export class AuthService {
 
 
   SetUserData(user: any) {
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
-    const userData: User = {
-      uid: user.uid,
-      email: user.email,
-      displayName: user.displayName,
-      photoURL: user.photoURL,
-      emailVerified: user.emailVerified
-    }
-    return userRef.set(userData, {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);    
+    return userRef.set(user, {
       merge: true
     })
   }
 
   GetUserData(user:any){
+    console.log(user);
     return this.afs.collection('users').doc(user.uid).get();
   }
 

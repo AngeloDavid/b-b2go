@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   public appPages = [
     { title: 'Incio', url: '/folder/Inbox', icon: 'home' },
-    { title: 'Perfil', url: '/folder/Outbox', icon: 'person' },
+    { title: 'Perfil', url: '/profile', icon: 'person' },
     { title: 'Favoritos', url: '/folder/Favorites', icon: 'star' },
     { title: 'Historial', url: '/folder/Outbox', icon: 'archive' },
     { title: 'Facturacion', url: '/folder/Archived', icon: 'reader' },
@@ -18,10 +18,11 @@ export class AppComponent {
 
   public user ={
     name:"Romina",
-    lastname:"Sanchez",
-    type:"EXPERT++",
+    lastname:"Sanchez",    
     porcentage:0.5
   };
   
-  constructor() {}
+  constructor() {
+    this.user=JSON.parse(localStorage.getItem('user'));
+  }
 }
