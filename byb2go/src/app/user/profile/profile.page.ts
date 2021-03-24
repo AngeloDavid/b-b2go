@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { User } from 'src/app/interfaces/interfaces';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilePage implements OnInit {
 
-  constructor() { }
+  user:User;
+  constructor(private navCtrl: NavController) {
+    this.user=JSON.parse(localStorage.getItem('user'));
+   }
 
   ngOnInit() {
+  }
+
+  backPages(){       
+    this.navCtrl.back();
   }
 
 }

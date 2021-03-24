@@ -1,9 +1,54 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>profile</ion-title>
+  <ion-toolbar >
+    <ion-buttons  slot="start">
+      <ion-button color="primary" (click)="backPages()" >
+        <ion-icon  slot="icon-only" name="chevron-back"></ion-icon></ion-button>
+      
+    </ion-buttons>
+    <ion-title align="center"> 
+      Mi Perfil
+    </ion-title>    
   </ion-toolbar>
+  
 </ion-header>
-
 <ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-align-self-center" align="center" >
+        <ion-avatar style="margin: auto;" class="ion-align-self-center" align="center" >
+          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+        </ion-avatar>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col align="center"><h3>{{user?.name}} {{user?.lastname}}</h3></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-label position="fixed">Nombre</ion-label>
+            <ion-input  [(ngModel)]="user.name" name="name" id="name" #name="ngModel" ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="fixed">Apellido</ion-label>
+            <ion-input  [(ngModel)]="user.lastname" name="lastname" id="lastname" #lastname="ngModel" ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label  position="fixed" >Fecha_Nacimiento</ion-label>
+              <ion-datetime [(ngModel)]="user.date_brith"  name="date_brith" id="date_brith" #date_brith="ngModel" cancelText="Cancelar" doneText="OK" displayFormat="YYYY-MM-DD" placeholder="Selecione la fecha"></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label position="fixed">Telefono</ion-label>
+            <ion-input  [(ngModel)]="user.phone" name="phone" id="phone" #phone="ngModel" ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="fixed">Email</ion-label>
+            <ion-input  [(ngModel)]="user.email" name="email" id="email" #email="ngModel" ></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

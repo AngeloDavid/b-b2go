@@ -38,6 +38,14 @@ const routes: Routes = [
   {
     path: 'firstpage',
     loadChildren: () => import('./user/firstpage/firstpage.module').then( m => m.FirstpagePageModule)
+  },
+  {
+    path: 'order',
+    loadChildren: () => import('./order/order.module').then( m => m.OrderPageModule)
+  },
+  {
+    path: 'payment',
+    loadChildren: () => import('./user/payment/payment.module').then( m => m.PaymentPageModule)
   }
 ];
 

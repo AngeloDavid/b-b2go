@@ -4,7 +4,7 @@ import { NavController } from '@ionic/angular';
 import { WorkerService} from '../services/worker.service';
 import { worker,service} from '../interfaces/interfaces';
 import { WorkerServiceService } from '../services/worker-service.service';
-import { typeWithParameters } from '@angular/compiler/src/render3/util';
+
 @Component({
   selector: 'app-worker',
   templateUrl: './worker.page.html',
@@ -77,7 +77,7 @@ export class WorkerPage implements OnInit {
         service.total = service.price + service.iva;
         return service;
       })
-      this.sumTotal(false);
+      this.sumTotal();
     },(err)=>{
       console.error(err);
     })
@@ -90,34 +90,31 @@ export class WorkerPage implements OnInit {
     if(!(this.servicios[index].cant<=0 && option)){
       this.servicios[index].cant= option?this.servicios[index].cant-1:this.servicios[index].cant+1;
       this.servicios[index].selected=true;
-      this.sumTotal(option);
+      
     }
     if(this.servicios[index].cant<=0 ){
       this.servicios[index].selected=false;
       this.shop.subtotal=0;
       this.shop.iva=0;
       this.shop.total=0;
-    }    
+    } 
+    this.sumTotal();   
   }
 
-  sumTotal(option: boolean){
-    let price, iva, total =0;
+  sumTotal(){
+    this.shop={
+      subtotal:0,
+      iva:0,
+      total:0
+    }
     this.servicios.map((e)=>{      
       if(e.selected){
-        if(option){
-          price = e.price * (-1);
-          iva = e.iva * (-1);
-          total = e.total * (-1);
-        }else{
-          price = e.price;
-          iva = e.iva;
-          total = e.total;
-        }
-        this.shop.subtotal = this.shop.subtotal + price;
-        this.shop.iva=this.shop.iva + iva;
-        this.shop.total = this.shop.total +  total;
+        this.shop.subtotal = this.shop.subtotal + (e.price*e.cant);
+        this.shop.iva=this.shop.iva + (e.iva*e.cant);
+        this.shop.total = this.shop.total +  (e.total*e.cant);
       }
     })
+    console.log(this.shop);
   }
 
 

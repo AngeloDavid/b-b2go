@@ -11,7 +11,7 @@ export class AppComponent {
     { title: 'Favoritos', url: '/folder/Favorites', icon: 'star' },
     { title: 'Historial', url: '/folder/Outbox', icon: 'archive' },
     { title: 'Facturacion', url: '/folder/Archived', icon: 'reader' },
-    { title: 'Metodo de Pago', url: '/folder/Trash', icon: 'wallet' },
+    { title: 'Metodo de Pago', url: '/payment', icon: 'wallet' },
     { title: 'Configuracion', url: '/folder/Spam', icon: 'settings' },
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
