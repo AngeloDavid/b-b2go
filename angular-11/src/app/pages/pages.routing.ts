@@ -4,6 +4,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { ServicesComponent } from './services/services.component';
 import { WorkersComponent } from './workers/workers.component';
 import { NewComponent } from './workers/new/new.component';
+import { UsersComponent } from './users/users.component';
 export const PagesRoutes: Routes = [
   {
     path: 'categorias',
@@ -24,6 +25,10 @@ export const PagesRoutes: Routes = [
   {
     path:'profesionales/:idWorker',
     component: NewComponent
+  },
+  {
+    path:'usuarios',
+    component: UsersComponent
   }
 
 ];

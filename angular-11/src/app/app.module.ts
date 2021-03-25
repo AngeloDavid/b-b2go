@@ -28,6 +28,7 @@ import { SignInComponent } from './userPages/sign-in/sign-in.component';
 import { SignUpComponent } from './userPages/sign-up/sign-up.component';
 import { ForgotComponent } from './userPages/forgot/forgot.component';
 import { VerifyEmailComponent } from './userPages/verify-email/verify-email.component';
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -112,6 +112,10 @@ export class AuthService {
     return this.afs.collection('users').doc(user.uid).get();
   }
 
+  getAllUsers(){
+    return this.afs.collection('users', ref => ref.where('type','==',2)).snapshotChanges();
+  }
+
   // Sign out 
   SignOut() {
     return this.afAuth.signOut().then(() => {

@@ -57,6 +57,9 @@ export interface service{
 export interface User {
     uid?: string;
     email: string;
+    lastname?:string;
+    name?:string;
+    phone?:string;
     password?:string;
     displayName?: string;
     photoURL?: string;
