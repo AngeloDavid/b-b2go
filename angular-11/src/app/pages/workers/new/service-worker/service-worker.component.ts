@@ -100,6 +100,7 @@ export class ServiceWorkerComponent implements OnInit {
       note:this.service.note,
       id_cat: this.ServiceService.firebase.doc('categories/'+this.service.id_cat).ref,      
       id_worker : this.ServiceService.firebase.doc('workers/'+this.id_Worker).ref,      
+      id_ServCat: this.service.id_ServCat
     }   
     
     if(this.isNew){

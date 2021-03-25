@@ -24,7 +24,12 @@ export class ModalNewComponent implements OnInit {
   }
   
   isnew:boolean = true;
-
+  percentage:number=0;
+  file:any= {
+    name:'',
+    size:0,
+    type:''
+  };
   itemsCategory: category [] =[];
 
   constructor(
@@ -128,5 +133,50 @@ export class ModalNewComponent implements OnInit {
       duration: 2000,
     });
   }
+
+  upload(event:any){
+    this.file = event.target.files.item(0);
+    console.log(this.file);
+    if( (this.file.type =='image/jpeg'|| this.file.type =='image/png') && this.file.size<=70000 ){      
+      this.CategoryService.uploadServ(this.file,this.categoria.id as string).snapshotChanges().subscribe(
+        resp=>{
+          resp?.ref.getDownloadURL().then(url=>{
+            this.categoria.img=url;
+            this.CategoryService.setService(this.categoria.id,{img:this.categoria.img}).then(resp=>{
+              console.log(resp);
+            }).catch(err=>{
+              console.error(err);
+            })
+          }).catch(err=>{
+            console.error(err);
+          });          
+        },
+        err=>{console.error(err)} );
+
+      this.CategoryService.uploadServ(this.file,this.categoria.id as string).percentageChanges().subscribe(
+        resp=>{
+          this.percentage = Math.round(resp as number);        
+        },
+        err=>{console.error(err)});
+    }else{
+      this.openSnackBar("El archivo no tiene el formato correcto","undo");
+    }
+  }
+
+  deleteImg(){
+    this.file= {
+      name:'',
+      size:0,
+      type:''
+    };
+    this.percentage=0;
+    this.categoria.img='';
+            this.CategoryService.setService(this.categoria.id,{img:this.categoria.img}).then(resp=>{
+              console.log(resp);
+            }).catch(err=>{
+              console.error(err);
+            });
+  }
+
 
 }

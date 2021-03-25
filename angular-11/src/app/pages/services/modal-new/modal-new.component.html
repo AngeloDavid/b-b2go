@@ -3,32 +3,54 @@
     <h2 mat-dialog-title >Modificacion del servicio</h2>
 </ng-template>
 <mat-dialog-content>
-    <mat-form-field>
-        <input matInput id="name" name="name" placeholder="Nombre" [(ngModel)]="categoria.name" #name="ngModel" > 
-    </mat-form-field>
-    <mat-form-field>
-        <input matInput id="note" name="note" placeholder="Descripcion" [(ngModel)]="categoria.note" #note="ngModel"> </mat-form-field>
-    <mat-form-field>
-            <input matInput type="number"  id="order" name="order" placeholder="Orden" [(ngModel)]="categoria.order" #order="ngModel"> </mat-form-field>
-    <mat-slide-toggle *ngIf="!isnew"
-            class="example-margin"
-            color="accent"
-            [(ngModel)]="categoria.status"
-          
-    ><span *ngIf="categoria.status ; else elseBlock">Habilitado</span>
-    <ng-template #elseBlock>
-        Deshabilitado
-    </ng-template>    
-    </mat-slide-toggle>
-    <br>
-    <span>Categoria</span>
-    <mat-form-field>
-        <mat-select  class="example-select"  [(ngModel)]="categoria.id_catFather" >
-            <mat-option  *ngFor="let item of itemsCategory; " value="{{item.id}}">{{ item.name }}</mat-option>
-        </mat-select>
-    </mat-form-field>
-    <br>
-              
+    <div fxLayout="row wrap">
+        <div fxFlex.gt-lg="25" fxFlex.gt-md="40" fxFlex.gt-xs="100" fxFlex="40">
+            <div *ngIf="!isnew" class="myfilebrowser">
+                <img *ngIf="categoria?.img===''; else elseBlock" src="../../../../assets/images/background/servicios.png" width="100" alt="user" >
+                    <ng-template #elseBlock>
+                        <img [src]="categoria.img" width="100" alt="user">
+                </ng-template>  
+                <div class="fileup" >
+                    <p>{{file.name}}</p>
+                    <label for="fileUpload" class="labelfile" >Subir Foto</label>
+                    <input  id="fileUpload"  accept="image/*" type="file" (change)="upload($event)">
+                    <button *ngIf="categoria.img!=''" mat-icon-button color="accent" color="accent" (click)="deleteImg()">
+                        <mat-icon>delete</mat-icon> 
+                    </button>
+                    <mat-progress-bar mode="determinate" value="{{percentage}}"></mat-progress-bar>  
+                    <p>{{ percentage}}%</p>                    
+                    <!-- <button mat-raised-button color="warn">Subir Foto</button> -->
+                </div>   
+                             
+            </div> 
+        </div>
+        <!-- Card column -->
+        <div fxFlex.gt-lg="75" fxFlex.gt-md="60" fxFlex.gt-xs="100" fxFlex="60">
+            <mat-form-field>
+                <input matInput id="name" name="name" placeholder="Nombre" [(ngModel)]="categoria.name" #name="ngModel" > 
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput id="note" name="note" placeholder="Descripcion" [(ngModel)]="categoria.note" #note="ngModel"> </mat-form-field>
+            <mat-form-field>
+                    <input matInput type="number"  id="order" name="order" placeholder="Orden" [(ngModel)]="categoria.order" #order="ngModel"> </mat-form-field>
+            
+            <mat-form-field>
+                <mat-select [(ngModel)]="categoria.id_catFather" placeholder="Categoria" >
+                    <mat-option  *ngFor="let item of itemsCategory; " value="{{item.id}}">{{ item.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-slide-toggle *ngIf="!isnew"
+                    class="example-margin"
+                    color="accent"
+                    [(ngModel)]="categoria.status"
+                
+            ><span *ngIf="categoria.status ; else elseBlock">Habilitado</span>
+            <ng-template #elseBlock>
+                Deshabilitado
+            </ng-template>    
+            </mat-slide-toggle>
+        </div>
+    </div>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-raised-button mat-dialog-close>Cancelar</button>
