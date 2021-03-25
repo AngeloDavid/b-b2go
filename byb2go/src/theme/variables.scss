@@ -4,7 +4,7 @@
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
-  --ion-color-primary: #9dff00;
+  --ion-color-primary: #D1651D;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
@@ -74,6 +74,10 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  /** font family **/
+  --ion-font-family: 'Poppins' !important;
+  --ion-default-font: 'Poppins' !important;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -234,3 +238,9 @@
     --ion-card-background: #1e1e1e;
   }
 }
+
+@font-face {
+  font-family: Poppins;
+  src: url("https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap"); 
+  }
+  
