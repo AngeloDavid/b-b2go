@@ -1,25 +1,48 @@
-ion-content{
-    height: 100vh;
+/* ion-content{
+    height: 100%;
     display: flex;
     background-size: cover;
     align-items: center;
-}
+    background: crimson;
+} */
 ion-card{
+    height: 600px;
+    width: 350px;
     padding-bottom: 5%;
     padding-top: 5%;
     margin: auto;   
     vertical-align: middle;
-    color: white;
-    background: grey;
-}
+    h1{
+        font-weight: bold;
+        color: black;
+        font-size: 3em;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+        text-shadow: 3px 3px #ec982b;
+    }
+    p{
+        color: rgb(90, 90, 90);
+        padding: 10px 0px 10px 0px;
+        margin: 5px 0px 5px 0px;
+    }
+    .input_tittle{
+        color: black;
+    }
+   }
 
 ion-card{
     ion-input {
-        border-bottom: 1px solid white;
+        border-bottom: 1px solid rgb(206, 86, 6);
+        margin-bottom: 15px;
+        padding: 3px;
+        color: #bfbfbf
+
     }
     ion-datetime {
-        border-bottom: 1px solid white;
+        border-bottom: 1px solid rgb(206, 86, 6);
+        padding: 3px;
         color: #bfbfbf;
+        margin-bottom: 15px;
     }
 }
 
@@ -28,7 +51,7 @@ ion-card{
     display: flex;
     background-size: cover;
     align-items: center;
-     background-color: white; 
+   /*   background-color: rgb(167, 7, 7);  */
     // background-image: url('../../../assets/images/background/fondo.jpg');
 }
 .login-box{

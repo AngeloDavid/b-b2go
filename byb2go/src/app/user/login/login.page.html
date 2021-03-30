@@ -1,34 +1,41 @@
-
+<ion-header>
+  <button>back</button>
+</ion-header>
 <ion-content>
   <div class="login-register">
     <div class="login-box">
       <ion-card>    
         <ion-card-content >
-          <h1 align="center" >B&b2go</h1>
+          <h1 align="center"> B&B2go </h1>
           <ion-grid>
             <ion-row>
               <ion-col>
-                <ion-label  position="floating">Email</ion-label>
+                <ion-label  class="input_tittle" position="floating">Email</ion-label>
                 <ion-input [(ngModel)]="user.email"  name="email" id="email" #email="ngModel" type="email"  placeholder="Email"></ion-input>
               </ion-col>
             </ion-row>
             <ion-row>
               <ion-col>
-                <ion-label  position="floating">Contraseña</ion-label>
-                <ion-input [(ngModel)]="user.password"  name="password" id="lastnpasswordame" #password="ngModel" type="password" placeholder="Contraseña"></ion-input>
+                <ion-label  class="input_tittle" position="floating">Contraseña</ion-label>
+                <ion-input class="input" [(ngModel)]="user.password"  name="password" id="lastnpasswordame" #password="ngModel" type="password" placeholder="Contraseña"></ion-input>
               </ion-col>
             </ion-row>
             <ion-row>
               <ion-col>
-                <ion-button (click)="login()" shape="round"  style="margin: auto;"  size="small" expand="block" color="secondary"  >Ingresar</ion-button>
+                <ion-button (click)="login()" shape="undefined"  style="margin: auto;"  size="large" expand="block" color="primary">
+                  Ingresar
+                </ion-button>
               </ion-col>
             </ion-row>
             <ion-row>
               <ion-col>
-                <p align="center"> o conectate con: <br> </p>                
-                  <ion-button  shape="round"   size="small" expand="block" fill="solid" color="primary"  >
-                    <ion-icon name="logo-facebook"></ion-icon>&nbsp;&nbsp;  Facebook</ion-button> <br>
-                  <ion-button  shape="round"  size="small" expand="block" fill="solid" color="danger"  >
+                <p align="left"> conectate con: <br> </p>                
+                  <ion-button  shape="undefined"   size="large" expand="block" fill="outline" color="tertiary"  >
+                    <ion-icon name="logo-facebook">
+                    </ion-icon>&nbsp;&nbsp;  Facebook
+                  </ion-button>
+                   <br>
+                  <ion-button  shape="undefined"  size="large" expand="block" fill="outline" color="danger"  >
                     <ion-icon name="logo-google"></ion-icon>&nbsp; &nbsp;  Google</ion-button>
               </ion-col>
             </ion-row>

@@ -1,29 +1,31 @@
 
+<ion-header>
+  <button>back</button>
+</ion-header>
 <ion-content>
   <div class="login-register">
     <div class="login-box">
       <ion-card>    
         <ion-card-content >
           <h1 align="center" >B&b2go</h1>
-          <h2 align="center" >Registrate</h2>
-          <br>
         <ion-grid>
           <ion-row>
-            <ion-col><ion-label>Nombre</ion-label>
+            <ion-col>
+<!--               <ion-label>Nombre</ion-label> -->
               <ion-input [(ngModel)]="newUser.name"  name="name" id="name" #name="ngModel"  type="text" placeholder="Nombre"></ion-input> </ion-col>
             <ion-col>
-              <ion-label>Apellido</ion-label>
+<!--               <ion-label>Apellido</ion-label> -->
               <ion-input [(ngModel)]="newUser.lastname"  name="lastname" id="lastname" #lastname="ngModel" type="text" placeholder="Apellido"></ion-input>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col>
-              <ion-label>Telefono</ion-label>
+<!--               <ion-label>Telefono</ion-label> -->
               <ion-input [(ngModel)]="newUser.phone"  name="phone" id="phone" #phone="ngModel" type="text" placeholder="Telefono"></ion-input>             
             </ion-col>
             <ion-col>
-              <ion-label>Fecha_Nacimiento</ion-label>
-              <ion-datetime [(ngModel)]="newUser.date_brith"  name="date_brith" id="date_brith" #date_brith="ngModel" cancelText="Cancelar" doneText="OK" displayFormat="YYYY-MM-DD" placeholder="Selecione la fecha"></ion-datetime>
+<!--               <ion-label>Fecha_Nacimiento</ion-label> -->
+              <ion-datetime [(ngModel)]="newUser.date_brith"  name="date_brith" id="date_brith" #date_brith="ngModel" cancelText="Cancelar" doneText="OK" displayFormat="YYYY-MM-DD" placeholder="Fecha de nacimiento"></ion-datetime>
             </ion-col>
           </ion-row>
           <ion-row>
@@ -38,19 +40,13 @@
             </ion-col>
           </ion-row>
         </ion-grid>
-        <ion-button (click)="register()" shape="round"  style="margin: auto;"  size="small" expand="block" color="secondary"  >Registrarme</ion-button>
-        <br>
-        <hr color="white" >  
-        <p align="center"> o regisrate con: <br><br> </p>
-        
-          <ion-button  shape="round"   size="small" expand="block" fill="solid" color="primary"  >
-            <ion-icon name="logo-facebook"></ion-icon>&nbsp;&nbsp;  Facebook</ion-button>              
-        
-        <br>
-        
-          <ion-button  shape="round"  size="small" expand="block" fill="solid" color="danger"  >
+        <ion-button (click)="register()" shape="undefined"  style="margin: auto;"  size="large" expand="block" color="primary"  >Registrarme</ion-button>
+        <p align="left"> conectarme con: <br></p>
+          <ion-button  shape="undefined"   size="large" expand="block" fill="outline" color="tertiary"  >
+            <ion-icon name="logo-facebook"></ion-icon>&nbsp;&nbsp;  Facebook</ion-button>
+            <br>                    
+          <ion-button  shape="undefined"  size="large" expand="block" fill="outline" color="danger"  >
             <ion-icon name="logo-google"></ion-icon>&nbsp; &nbsp;  Google</ion-button>
-        
         </ion-card-content>
       </ion-card>    
     </div>

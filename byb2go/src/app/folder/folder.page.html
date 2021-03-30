@@ -4,15 +4,15 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title> 
-      <ion-select value="brown" okText="OK" cancelText="Cerrar">
+      <ion-select value="red" okText="OK" cancelText="Cerrar">
         <ion-select-option value="brown">Mi Casa</ion-select-option>
         <ion-select-option value="blonde">Mi Trabajo</ion-select-option>
-        <ion-select-option value="black">Otra Direccion</ion-select-option>
-        <ion-select-option value="red">Mi escuela</ion-select-option>
+        <ion-select-option value="black">Mi escuela</ion-select-option>
+        <ion-select-option value="red">Nueva Dirección</ion-select-option>
       </ion-select>
     </ion-title>
     <ion-buttons slot="end">
-      <ion-button color="secondary">
+      <ion-button class="calendario" color="primary">
         <ion-icon slot="icon-only" ios="calendar-outline" md="calendar-sharp"></ion-icon>
       </ion-button>      
     </ion-buttons>
@@ -45,7 +45,7 @@
       </ion-row>
       <ion-row class="ion-align-items-center">
         <ion-col class="ion-align-items-center" size-lg *ngFor="let item of servicios" size="6" (click)="openService(item.id)">
-            <img src="../../assets/img/background.png">
+            <img src="../../assets/img/servicio_ejemplo.jpg">
             <ion-label position="floating">{{item.name}}</ion-label>                    
         </ion-col>
       </ion-row>

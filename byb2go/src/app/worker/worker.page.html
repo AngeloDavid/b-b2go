@@ -1,29 +1,25 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar >
     <ion-buttons  slot="start">
       <ion-button color="primary" (click)="backPages()" >
         <ion-icon  slot="icon-only" name="chevron-back"></ion-icon></ion-button>
-      
     </ion-buttons>
     <ion-title align="center"> 
-      
+      Te ofrezco mi servicio
     </ion-title>    
   </ion-toolbar>
-  
 </ion-header>
 
 <ion-content>
   <ion-grid>
   <ion-row>
     <div>
-      <img src = "../../assets/img/bg_wprker.jpg" >
+      <img src = "../../assets/img/portada_servicio.jpg" >
     </div>
     <ion-col style="height: 200px;">
       <ion-item>
-
-      
-      <ion-thumbnail  slot="start" >      
-        <img *ngIf="worker?.img==''; else elseblock" src="../../assets/img/background.png">
+      <ion-thumbnail slot="start" >      
+        <img *ngIf="worker?.img==''; else elseblock" src="../../assets/img/perfil.jpg">
         <ng-template #elseblock>
           <img  [src]="worker?.img">
         </ng-template>      
@@ -41,7 +37,7 @@
           <ion-icon name="star"></ion-icon></ion-button>
         
       </ion-buttons>
-    </ion-item>
+      </ion-item>
     </ion-col>
   </ion-row>
   <ion-row>
