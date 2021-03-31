@@ -71,3 +71,22 @@ export interface User {
     type?:number;
     iscompleted?:boolean;
  }
+
+ export interface reseva {
+    id?:string;
+    num?:number;
+    isBooking:boolean;
+    date_start:Date;
+    date_end:Date;
+    address:string;
+    id_worker?:string;
+    id_user?:string;
+    date_created:Date;
+    date_modified:Date;
+    status:number;
+    horas:string;
+    subtotal:number;
+    iva:number;
+    total:number;
+ }
+ 
