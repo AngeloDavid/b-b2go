@@ -8,15 +8,15 @@ import {User } from '../../interfaces/interfaces';
 })
 export class RegisterPage implements OnInit {
 
-  newUser: User={
-    name:'',
-    lastname:'',
-    phone:'',
-    email:'',
-    emailVerified:false,
-    password:'',
-    type:2,
-    iscompleted:false,
+  newUser: User = {
+    name: '',
+    lastname: '',
+    phone: '',
+    email: '',
+    emailVerified: false,
+    password: '',
+    type: 2,
+    iscompleted: false,
   };
   constructor(
     private authService: AuthService
