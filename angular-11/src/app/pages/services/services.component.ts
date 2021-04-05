@@ -32,7 +32,7 @@ export class ServicesComponent implements AfterViewInit {
   
   // cat : Observable <category> = null;
 
-  displayedColumns: string[] = ['id', 'name', 'note', 'order','category','status','act'];
+  displayedColumns: string[] = ['id', 'img','name', 'note', 'order','category','status','act'];
   // displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<category>(this.items);
   @ViewChild(MatPaginator)set appprueba(paginator: MatPaginator) {

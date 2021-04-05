@@ -65,3 +65,17 @@ export interface User {
     photoURL?: string;
     emailVerified: boolean;
  }
+
+ export interface reseva {
+    id?:string;
+    isBooking:boolean;
+    date_start:Date;
+    date_end:Date;
+    address:string;
+    paymente:any;
+    id_worker?:string;
+    id_user?:string;
+    date_created:Date;
+    date_modified:Date;
+    status:number
+ }
