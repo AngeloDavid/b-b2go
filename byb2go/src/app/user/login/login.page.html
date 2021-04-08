@@ -1,22 +1,26 @@
 <ion-header>
-  <button>back</button>
+  
 </ion-header>
 <ion-content>
   <div class="login-register">
     <div class="login-box">
       <ion-card>    
         <ion-card-content >
+          <ion-buttons  slot="start">
+            <ion-button color="primary" [routerLink]="['/firstpage']" >
+              <ion-icon  slot="icon-only" name="chevron-back"></ion-icon></ion-button>
+          </ion-buttons>
           <h1 align="center"> B&B2go </h1>
           <ion-grid>
             <ion-row>
               <ion-col>
-                <ion-label  class="input_tittle" position="floating">Email</ion-label>
+                <!-- <ion-label  class="input_tittle" position="fixed">Email</ion-label> -->
                 <ion-input [(ngModel)]="user.email"  name="email" id="email" #email="ngModel" type="email"  placeholder="Email"></ion-input>
               </ion-col>
             </ion-row>
             <ion-row>
               <ion-col>
-                <ion-label  class="input_tittle" position="floating">Contraseña</ion-label>
+                <!-- <ion-label  class="input_tittle" position="fixed">Contraseña</ion-label> -->
                 <ion-input class="input" [(ngModel)]="user.password"  name="password" id="lastnpasswordame" #password="ngModel" type="password" placeholder="Contraseña"></ion-input>
               </ion-col>
             </ion-row>

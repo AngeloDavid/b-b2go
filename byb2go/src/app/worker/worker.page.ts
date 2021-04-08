@@ -17,7 +17,7 @@ export class WorkerPage implements OnInit {
     subtotal:0,
     iva:0,
     total:0,
-    time:0
+    seconds:0
   };
   servicios: service []=[];
   
@@ -107,7 +107,7 @@ export class WorkerPage implements OnInit {
       subtotal:0,
       iva:0,
       total:0,
-      time:0
+      seconds:0
     }
     let fecha = new Date();
     fecha.setHours(0);
@@ -115,14 +115,16 @@ export class WorkerPage implements OnInit {
     fecha.setSeconds(0);
     fecha.setMilliseconds(0);
 
-    this.servicios.map((e : service)=>{      
+    this.servicios.map((e : any)=>{      
       if(e.selected){
         this.shop.subtotal = this.shop.subtotal + (e.price*e.cant);
         this.shop.iva=this.shop.iva + (e.iva*e.cant);
         this.shop.total = this.shop.total +  (e.total*e.cant);
         console.log(fecha);
-        let fecha1= e.time.toJSON() ;        
-        console.log(fecha1);
+        this.shop.seconds = this.shop.seconds + ((e.time.toDate().getHours() * 60*60) + ( e.time.toDate().getMinutes() * 60))*e.cant;
+        
+        // fecha.setSeconds(fecha.getSeconds()+segundos);
+        // console.log(e.time.toDate().getHours(), e.time.toDate().getMinutes(), segundos, segundos * e.cant,fecha);
       }
     })
     console.log(this.shop);
@@ -133,6 +135,7 @@ export class WorkerPage implements OnInit {
     this.shop.subtotal=0;
     this.shop.iva=0;
     this.shop.total=0;
+    this.shop.seconds=0;
     this.navCtrl.back();
   }
 

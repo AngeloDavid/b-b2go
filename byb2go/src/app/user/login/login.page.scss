@@ -7,11 +7,12 @@
 } */
 ion-card{
     height: 600px;
-    width: 350px;
+    max-width: 100%;
     padding-bottom: 5%;
     padding-top: 5%;
     margin: auto;   
     vertical-align: middle;
+    background: rgba(255, 255, 255, 0);
     h1{
         font-weight: bold;
         color: black;
@@ -51,12 +52,14 @@ ion-card{
     display: flex;
     background-size: cover;
     align-items: center;
+    background-color: white; 
    /*   background-color: rgb(167, 7, 7);  */
     // background-image: url('../../../assets/images/background/fondo.jpg');
 }
 .login-box{
-    max-width: 400px;        
-    min-width: 280px;
+    // max-width: 400px;        
+    // min-width: 280px;
+    min-width: 90%;
     margin: auto;   
     vertical-align: middle;
 }  
