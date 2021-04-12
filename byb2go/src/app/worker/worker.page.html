@@ -80,9 +80,9 @@
 </ion-content>
 <ion-footer>
   <ion-buttons align="center" >
-    <ion-button  style="margin: auto;"  size="large" expand="block" fill="outline" color="secondary"  >
-      Reservar</ion-button>    
-    <ion-button style="margin: auto;"  size="large" expand="block" fill="outline" [routerLink]="['/order']" color="primary"  >
+      <ion-button  style="margin: auto;"  size="large" expand="block" fill="outline" color="secondary"  >
+        Reservar</ion-button>    
+    <ion-button style="margin: auto;"  size="large" expand="block" fill="outline"  (click)="openOrder()"  color="primary"  >
       Inmediato</ion-button>
   </ion-buttons>
 
