@@ -79,8 +79,8 @@ export interface User {
     date_start:Date;
     date_end:Date;
     address:string;
-    id_worker?:string;
-    id_user?:string;
+    id_worker?:any;
+    id_user?:any;
     date_created:Date;
     date_modified:Date;
     status:number;

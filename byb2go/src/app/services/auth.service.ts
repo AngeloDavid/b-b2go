@@ -84,7 +84,8 @@ export class AuthService {
     if(localStorage.getItem('user')){
       const user = JSON.parse(localStorage.getItem('user')as string);
       console.log(user);
-      return (user !== null && user.emailVerified !== false) ? true : false;
+      // return (user !== null && user.emailVerified !== false) ? true : false;
+      return (user !== null ) ? true : false;
     }else{
       return false;
     } 

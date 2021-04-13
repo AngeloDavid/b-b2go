@@ -1,0 +1,27 @@
+
+ion-buttons {
+    ion-icon{
+        font-size:large;
+    }
+}
+
+.centrado{
+    ion-icon{
+        font-size: xxx-large;
+    }   
+    display: table;
+    height:110px;
+    text-align: center;
+    align-items: center;
+    margin: auto;
+    .hijo {
+        display: table-cell;
+        vertical-align: middle;
+     }
+}
+.add{
+    box-shadow: none;
+    .centrado{
+        height:170px;
+    }
+}

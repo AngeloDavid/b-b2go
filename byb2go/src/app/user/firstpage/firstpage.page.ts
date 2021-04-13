@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-firstpage',
@@ -8,7 +9,13 @@ import { NavController } from '@ionic/angular';
 })
 export class FirstpagePage implements OnInit {
 
-  constructor(private navCtrl: NavController,) {
+  constructor(private navCtrl: NavController, public router: Router) {
+    // console.log("hola")
+    // if( localStorage.getItem('user') != ''){
+      
+    //   this.router.navigate(['home']);
+    //   console.log("hola")
+    // }
 
    }
 

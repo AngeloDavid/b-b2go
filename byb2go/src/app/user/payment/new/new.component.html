@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons  slot="start">
+      <ion-button color="secondary" (click)="backPages()" >
+        <ion-icon  slot="icon-only" name="close"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-title align="center"> 
+      Nueva Tarjeta de Credito
+    </ion-title>    
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item>          
+          <ion-label position="stacked">Nombre  de Tarjeta</ion-label>          
+          <ion-input  [(ngModel)]="card.nombre" name="nombre" id="nombre"   type="text"  placeholder="Escribe un comentario" ><ion-icon name="document-text-outline"></ion-icon> </ion-input>
+        </ion-item>        
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>          
+          <ion-label position="stacked">Numero de Tarjeta</ion-label>
+          <ion-input [(ngModel)]="card.numberCard" name="numberCard" id="numberCard"  placeholder="XXXX XXXX XXXX XXXX"  ><ion-icon name="card-outline"></ion-icon> </ion-input>
+        </ion-item>        
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>          
+          <ion-label position="stacked">Fecha de vto.</ion-label>          
+          <ion-datetime [(ngModel)]="card.fecha" name="fecha" id="fecha" cancelText="Cancelar" doneText="OK" pickerFormat="MM/YY" placeholder="MM/YY" displayFormat="MM/YY" max="2030-01-01"></ion-datetime>
+        </ion-item> 
+      </ion-col>
+      <ion-col>
+        <ion-item>          
+          <ion-label position="stacked">CVV</ion-label>
+          <ion-input [(ngModel)]="card.cvv" name="cvv" id="cvv" placeholder="xxx" ><ion-icon name="keypad-outline"></ion-icon> </ion-input>
+        </ion-item>   
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button  style="margin: auto;"  expand="block"  color="primary"  (click)="save()" >
+          Guardar</ion-button>  
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

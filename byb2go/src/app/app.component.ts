@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from "@angular/router";
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -22,7 +23,9 @@ export class AppComponent {
     porcentage:0.5
   };
   
-  constructor() {
-    this.user=JSON.parse(localStorage.getItem('user'));
+  constructor(public router: Router) {    
+    if( localStorage.getItem('user') != ''){
+      this.user=JSON.parse(localStorage.getItem('user'));      
+    }
   }
 }

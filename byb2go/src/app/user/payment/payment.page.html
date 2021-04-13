@@ -11,6 +11,44 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content>  
+  <ion-card color="primary" >     
+    <ion-card-content>
+      <ion-buttons  >
+        <ion-button color="light"  slot="end" >
+          <ion-icon name="star"></ion-icon></ion-button>      
+      </ion-buttons>  
+      <div align="center" class="centrado ion-align-self-center " >  
+        <div class="hijo">
+          <ion-icon  color="light"  size="5" name="cash"></ion-icon><br>
+          <h1 color="light" >Efectivo</h1>
+        </div>        
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>     
+    <ion-card-content>
+      <ion-buttons   >
+        <ion-button color="secondary"  slot="end" >
+          <ion-icon name="star-outline"></ion-icon></ion-button>      
+      </ion-buttons>  
+      <div align="center"  class="centrado ion-align-self-center" >  
+        <div class="hijo">
+          <ion-icon size="5" name="card"></ion-icon><br>
+          <h1>Tarjeta Credito</h1>
+          <h2>juanito</h2>
+          <p>Termina en *** 5780</p>         
+        </div>        
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="add" (click)="presentModal()" >     
+    <ion-card-content class="centrado" align="center" >
+      <div align="center"  class="ion-align-self-center hijo" >  
+        <ion-icon size="5" name="add-circle"></ion-icon><br>
+        <h2>Añadir una nueva Tarjeta de Credito</h2>
+      </div>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

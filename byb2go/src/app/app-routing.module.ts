@@ -33,7 +33,8 @@ const routes: Routes = [
   },
   {
     path: 'profile',
-    loadChildren: () => import('./user/profile/profile.module').then( m => m.ProfilePageModule)
+    loadChildren: () => import('./user/profile/profile.module').then( m => m.ProfilePageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'firstpage',
@@ -41,11 +42,13 @@ const routes: Routes = [
   },
   {
     path: 'order',
-    loadChildren: () => import('./order/order.module').then( m => m.OrderPageModule)
+    loadChildren: () => import('./order/order.module').then( m => m.OrderPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'payment',
-    loadChildren: () => import('./user/payment/payment.module').then( m => m.PaymentPageModule)
+    loadChildren: () => import('./user/payment/payment.module').then( m => m.PaymentPageModule),
+    canActivate: [AuthGuard]
   }
 ];
 
