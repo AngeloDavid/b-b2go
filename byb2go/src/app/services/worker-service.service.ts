@@ -13,7 +13,7 @@ export class WorkerServiceService {
 
     // optener servicios del trabajador
   getAllServicesWorker(id:any){ 
-     const refservice = this.firebase.doc('workers/'+id).ref;
+    const refservice = this.firebase.doc('workers/'+id).ref;
     return  this.firebase.collection('services', ref => ref.where('id_worker','==',refservice).where('status','==',true).orderBy('order')).snapshotChanges();
   }
   

@@ -90,3 +90,20 @@ export interface User {
     total:number;
  }
  
+
+ export interface payment{
+     id?:string;
+     name:string;
+     order:number;
+     status:boolean;
+ }
+
+ export interface users_payments{
+     id?:string;
+     desp?:string;
+     id_user:any;
+     id_payment:any;
+     isdefault:boolean;
+     status:boolean;
+     data_payment?:any;
+ }

@@ -40,13 +40,13 @@ export class AuthService {
           user.uid= resp.id;          
           if(user.type==2){
             localStorage.setItem('user',JSON.stringify(user));
-            console.log(user);
+            // console.log(user);
             this.ngZone.run(() => {
               this.router.navigate(['home']);
             });
           }          
         })        
-        console.log(result.user);        
+        // console.log(result.user);        
       }).catch((error: any) => {
         window.alert(error.message)
       })
@@ -83,7 +83,7 @@ export class AuthService {
   get isLoggedIn(): boolean {
     if(localStorage.getItem('user')){
       const user = JSON.parse(localStorage.getItem('user')as string);
-      console.log(user);
+      // console.log(user);
       // return (user !== null && user.emailVerified !== false) ? true : false;
       return (user !== null ) ? true : false;
     }else{
@@ -113,7 +113,7 @@ export class AuthService {
   }
 
   GetUserData(user:any){
-    console.log(user);
+    // console.log(user);
     return this.afs.collection('users').doc(user.uid).get();
   }
 
