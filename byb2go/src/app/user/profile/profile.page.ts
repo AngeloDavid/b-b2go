@@ -8,10 +8,13 @@ import { User } from 'src/app/interfaces/interfaces';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-
+  
+  segmentModel: any;
   user:User;
+
   constructor(private navCtrl: NavController) {
     this.user=JSON.parse(localStorage.getItem('user'));
+    this.segmentModel='person';
    }
 
   ngOnInit() {

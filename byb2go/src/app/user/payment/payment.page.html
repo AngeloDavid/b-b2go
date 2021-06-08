@@ -1,8 +1,9 @@
 <ion-header>
   <ion-toolbar >
     <ion-buttons  slot="start">
-      <ion-button color="primary" (click)="backPages()" >
-        <ion-icon  slot="icon-only" name="chevron-back"></ion-icon></ion-button>
+      <ion-menu-button color="primary" ></ion-menu-button>
+      <!-- <ion-button color="primary" (click)="backPages()" >
+        <ion-icon  slot="icon-only" name="menu"></ion-icon></ion-button> -->
       
     </ion-buttons>
     <ion-title align="center"> 
@@ -12,32 +13,18 @@
 </ion-header>
 
 <ion-content>  
-  <ion-card color="primary" >     
-    <ion-card-content>
-      <ion-buttons  >
-        <ion-button color="light"  slot="end" >
-          <ion-icon name="star"></ion-icon></ion-button>      
-      </ion-buttons>  
-      <div align="center" class="centrado ion-align-self-center " >  
-        <div class="hijo">
-          <ion-icon  color="light"  size="5" name="cash"></ion-icon><br>
-          <h1 color="light" >Efectivo</h1>
-        </div>        
-      </div>
-    </ion-card-content>
-  </ion-card>
-  <ion-card>     
+  <ion-card *ngFor="let item of list"  [color]=" item.isdefault ?  'primary':'default'" >
     <ion-card-content>
       <ion-buttons   >
-        <ion-button color="secondary"  slot="end" >
-          <ion-icon name="star-outline"></ion-icon></ion-button>      
+        <ion-button [color]=" item.isdefault ?  'light':'medium'"   slot="end" >
+          <ion-icon name="star"></ion-icon></ion-button>      
       </ion-buttons>  
-      <div align="center"  class="centrado ion-align-self-center" >  
-        <div class="hijo">
-          <ion-icon size="5" name="card"></ion-icon><br>
-          <h1>Tarjeta Credito</h1>
-          <h2>juanito</h2>
-          <p>Termina en *** 5780</p>         
+      <div align="center"  class="centrado ion-align-self-center"  >  
+        <div class="hijo"  >
+          <ion-icon size="5" name="{{item.icon}}"  [color]=" item.isdefault ?  'light':'medium'"    ></ion-icon><br>
+          <h1 >{{ item.payment }}</h1>
+          <h2 > {{ item.desp }} </h2>
+          <p  *ngIf="item.icon=='card'" >Termina en ***{{item.data_payment.numCard | slice:-4 }} </p>         
         </div>        
       </div>
     </ion-card-content>

@@ -7,7 +7,7 @@ import { Router } from "@angular/router";
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Incio', url: '/folder/Inbox', icon: 'home' },
+    { title: 'Incio', url: '/home', icon: 'home' },
     { title: 'Perfil', url: '/profile', icon: 'person' },
     { title: 'Favoritos', url: '/folder/Favorites', icon: 'star' },
     { title: 'Historial', url: '/folder/Outbox', icon: 'archive' },

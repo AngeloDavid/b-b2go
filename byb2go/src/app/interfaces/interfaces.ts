@@ -93,9 +93,15 @@ export interface User {
 
  export interface payment{
      id?:string;
-     name:string;
+     desp:string;
      order:number;
      status:boolean;
+     id_payment?:any;
+     icon?:string;
+     payment?:string;
+     isdefault?:boolean;
+     data_payment?:any;
+
  }
 
  export interface users_payments{
